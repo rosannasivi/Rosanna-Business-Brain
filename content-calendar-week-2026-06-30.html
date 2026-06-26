@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Calendar · Woche 30. Juni 2026 · VisionMoments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0B2545; --primary-light:#1a3a6b;
+    --gold:#C9A227; --gold-light:#D4B35A;
+    --black:#0A0A0A; --ink:#E8E8E0; --white:#FFFFFF;
+    --surface:#141414; --surface2:#1C1C1C;
+    --border:#2A2A2A;
+    --gray-text:#777777;
+    --good:#16A34A; --warn:#D97706; --bad:#DC2626; --purple:#7C3AED;
+    --blue:#1E6FE0;
+    --r-md:14px; --pill:9999px;
+    --sh:0 1px 3px rgba(0,0,0,.5),0 8px 28px rgba(0,0,0,.4);
+    --grad:linear-gradient(135deg, #071829 0%, var(--primary) 50%, var(--primary-light) 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Rethink Sans',sans-serif;background:#0A0A0A;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .doc{max-width:980px;margin:0 auto;padding:32px 20px 70px;}
+
+  /* Header */
+  .ohead{border-radius:var(--r-md);padding:28px 30px;margin-bottom:24px;color:#fff;background:var(--grad);box-shadow:0 16px 48px rgba(11,37,69,.6);position:relative;overflow:hidden;}
+  .ohead::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(201,162,39,.08);top:-140px;right:-80px;pointer-events:none;}
+  .ohead .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);}
+  .ohead h1{font-size:clamp(22px,3.5vw,30px);font-weight:800;letter-spacing:-.02em;margin:6px 0 4px;}
+  .ohead .d{font-size:13px;opacity:.72;}
+  .ohead .hl{display:flex;gap:28px;margin-top:18px;flex-wrap:wrap;}
+  .ohead .hl-item{font-size:12px;opacity:.7;}
+  .ohead .hl-item strong{font-size:22px;font-weight:800;display:block;color:var(--gold);opacity:1;line-height:1.1;}
+
+  /* Section label */
+  .sec{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-text);font-weight:700;margin:26px 0 10px;}
+
+  /* Pillar chips */
+  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:26px;}
+  @media(max-width:580px){.pillars{grid-template-columns:1fr;}}
+  .pcell{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 15px;border-left:3px solid var(--gold);}
+  .pcell .pl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:3px;}
+  .pcell .pn{font-size:14px;font-weight:700;color:#E8E8E0;}
+  .pcell .pt{font-size:11px;color:var(--gold);margin-top:2px;}
+
+  /* Intent badges */
+  .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--pill);white-space:nowrap;}
+  .b-edu{background:rgba(30,111,224,.15);color:#5BA3FF;}
+  .b-nur{background:rgba(22,163,74,.15);color:#4ADE80;}
+  .b-soft{background:rgba(217,119,6,.18);color:#FBB040;}
+  .b-hard{background:rgba(220,38,38,.15);color:#FF6B6B;}
+  .b-eng{background:rgba(124,58,237,.15);color:#A78BFA;}
+
+  /* Format tag */
+  .fmt{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 9px;border-radius:var(--pill);background:var(--surface2);color:var(--gray-text);white-space:nowrap;margin-top:4px;}
+
+  /* Day cards */
+  .day-cards{display:flex;flex-direction:column;gap:12px;}
+  .dcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);display:grid;grid-template-columns:80px 120px 1fr 130px 110px;gap:0;overflow:hidden;}
+  @media(max-width:760px){.dcard{grid-template-columns:1fr;}}
+  .dcard-day{padding:18px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;}
+  .dcard-day .dn{font-size:24px;font-weight:800;line-height:1;color:var(--accent,var(--gold));}
+  .dcard-day .dl{font-size:11px;color:var(--gray-text);margin-top:3px;}
+  .dcard-pillar{padding:18px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;gap:6px;}
+  .pillar-chip{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--pill);background:rgba(201,162,39,.12);color:var(--gold);white-space:nowrap;display:inline-block;}
+  .dcard-main{padding:18px 16px;border-right:1px solid var(--border);}
+  .topic{font-size:13px;font-weight:600;color:#E8E8E0;line-height:1.4;margin-bottom:7px;}
+  .hook{font-size:12px;color:var(--gray-text);line-height:1.4;padding:6px 10px;background:var(--surface2);border-radius:8px;border-left:2px solid var(--accent,var(--gold));}
+  .hook::before{content:'"';color:var(--gold);}
+  .hook::after{content:'"';color:var(--gold);}
+  .dcard-intent{padding:18px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;gap:6px;}
+  .dcard-fmt{padding:18px 14px;display:flex;flex-direction:column;justify-content:flex-start;gap:6px;}
+  .var-note{font-size:10px;color:var(--gray-text);}
+  .cta{font-size:11px;color:#5BA3FF;background:rgba(30,111,224,.07);border-radius:7px;padding:5px 10px;margin-top:8px;display:inline-block;line-height:1.4;}
+
+  /* Stats grid */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+  @media(max-width:580px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  .scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px;position:relative;overflow:hidden;}
+  .scard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+  .scard .sl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);}
+  .scard .sn{font-size:28px;font-weight:800;background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1;margin-top:4px;}
+  .scard .sd{font-size:11px;color:var(--gray-text);margin-top:2px;}
+
+  /* Intent bar */
+  .ibar-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 20px;}
+  .ibar{display:flex;border-radius:var(--pill);overflow:hidden;height:10px;gap:1px;}
+  .ibar-seg{transition:width 1.2s ease;}
+  .leg{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;}
+  .leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray-text);}
+  .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+  /* Note */
+  .note{background:linear-gradient(135deg, #0A1929 0%, #0f2038 100%);border:1px solid rgba(201,162,39,.22);border-radius:var(--r-md);padding:20px 24px;font-size:14px;margin-top:16px;color:var(--ink);line-height:1.7;}
+  .note strong{color:var(--gold);}
+
+  footer{text-align:center;padding:34px 22px 10px;color:#333;font-size:12px;}
+  footer b{color:#555;}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="ohead">
+    <div class="k">CMO · Content Calendar · VisionMoments</div>
+    <h1>Woche 30. Juni - 4. Juli 2026</h1>
+    <div class="d">Rosanna Sivillica · 5 Posts geplant · Trust-Building Stage · Purely Personal Content OS</div>
+    <div class="hl">
+      <div class="hl-item"><strong>5</strong>Posts</div>
+      <div class="hl-item"><strong>4</strong>Pillars aktiv</div>
+      <div class="hl-item"><strong>20%</strong>Soft Selling</div>
+      <div class="hl-item"><strong>0</strong>Kons. Pillar-Wieder.</div>
+    </div>
+  </div>
+
+  <!-- PILLAR LEGEND -->
+  <div class="sec">Aktive Content-Territorien diese Woche</div>
+  <div class="pillars">
+    <div class="pcell"><div class="pl">P1 · Expertise</div><div class="pn">Insider Access</div><div class="pt">20 Jahre nahe am C-Suite</div></div>
+    <div class="pcell"><div class="pl">P2 · Experience</div><div class="pn">Die Kunst des Loslassens</div><div class="pt">Resilienz und Vertrauen</div></div>
+    <div class="pcell"><div class="pl">P3 · Methodology</div><div class="pn">Struktur, die Freiheit schafft</div><div class="pt">Das VisionMoments-System</div></div>
+    <div class="pcell"><div class="pl">P4 · Audience</div><div class="pn">Was Führungskräfte wirklich kaufen</div><div class="pt">Der eigentliche Schmerzpunkt des ICP</div></div>
+  </div>
+
+  <!-- DAY CARDS -->
+  <div class="sec">5-Tages-Plan · Montag bis Freitag</div>
+  <div class="day-cards">
+
+    <!-- MONDAY -->
+    <div class="dcard" style="--accent:#5BA3FF">
+      <div class="dcard-day">
+        <div class="dn">Mo</div>
+        <div class="dl">30. Jun</div>
+      </div>
+      <div class="dcard-pillar">
+        <span class="pillar-chip">P3 Struktur</span>
+        <div style="font-size:10px;color:var(--gray-text)">Methodology</div>
+      </div>
+      <div class="dcard-main">
+        <div class="topic">Die 5 Fragen, die ich jedem Kunden stelle, bevor ich irgendetwas plane - und warum die meisten Eventplaner diese nie stellen</div>
+        <div class="hook">5 Fragen stelle ich vor jedem Event. Keine Ausnahme.</div>
+        <div class="cta">Speichern + teilen, wenn Sie Events organisieren oder delegieren.</div>
+      </div>
+      <div class="dcard-intent">
+        <span class="badge b-edu">Educating</span>
+        <div style="font-size:10px;color:var(--gray-text);margin-top:4px">Saves and reposts</div>
+      </div>
+      <div class="dcard-fmt">
+        <span class="fmt">Carousel</span>
+        <div class="var-note">Variation A</div>
+        <div class="var-note">Framework-Heavy</div>
+      </div>
+    </div>
+
+    <!-- TUESDAY -->
+    <div class="dcard" style="--accent:#4ADE80">
+      <div class="dcard-day">
+        <div class="dn">Di</div>
+        <div class="dl">1. Jul</div>
+      </div>
+      <div class="dcard-pillar">
+        <span class="pillar-chip">P2 Loslassen</span>
+        <div style="font-size:10px;color:var(--gray-text)">Experience</div>
+      </div>
+      <div class="dcard-main">
+        <div class="topic">Wie ich nach einer Kündigung per Video-Call entschieden habe: Ok, das war's. Weiter geht's. - Und wie VisionMoments daraus entstanden ist.</div>
+        <div class="hook">Nach sechs Wochen wurde mir per Video-Call gekündigt.</div>
+        <div class="cta">Was war Ihr Moment, in dem Sie weitergemacht haben, obwohl Sie nicht wussten wie?</div>
+      </div>
+      <div class="dcard-intent">
+        <span class="badge b-nur">Nurturing</span>
+        <div style="font-size:10px;color:var(--gray-text);margin-top:4px">Build connection</div>
+      </div>
+      <div class="dcard-fmt">
+        <span class="fmt">Story Post</span>
+        <div class="var-note">Variation B</div>
+        <div class="var-note">Story-Flow</div>
+      </div>
+    </div>
+
+    <!-- WEDNESDAY -->
+    <div class="dcard" style="--accent:#FBB040">
+      <div class="dcard-day">
+        <div class="dn">Mi</div>
+        <div class="dl">2. Jul</div>
+      </div>
+      <div class="dcard-pillar">
+        <span class="pillar-chip">P4 Führungskräfte</span>
+        <div style="font-size:10px;color:var(--gray-text)">Audience</div>
+      </div>
+      <div class="dcard-main">
+        <div class="topic">Was eine Führungskraft wirklich verliert, wenn ein Kundenanlass nicht sitzt - und die eine Entscheidung, die alles ändert</div>
+        <div class="hook">Ihr Name stand drauf. Der Abend war nicht, was er hätte sein sollen.</div>
+        <div class="cta">'ANLASS' in die DMs - ich schaue mir Ihre Situation an.</div>
+      </div>
+      <div class="dcard-intent">
+        <span class="badge b-soft">Soft Selling</span>
+        <div style="font-size:10px;color:var(--gray-text);margin-top:4px">Drive DMs</div>
+      </div>
+      <div class="dcard-fmt">
+        <span class="fmt">Text Post</span>
+        <div class="var-note">Variation B</div>
+        <div class="var-note">Story-Flow</div>
+      </div>
+    </div>
+
+    <!-- THURSDAY -->
+    <div class="dcard" style="--accent:#A78BFA">
+      <div class="dcard-day">
+        <div class="dn">Do</div>
+        <div class="dl">3. Jul</div>
+      </div>
+      <div class="dcard-pillar">
+        <span class="pillar-chip">P1 Insider</span>
+        <div style="font-size:10px;color:var(--gray-text)">Expertise</div>
+      </div>
+      <div class="dcard-main">
+        <div class="topic">Was macht einen Finance-Firmenanlass wirklich unvergesslich? Nicht was Sie denken. (Contrarian Poll mit Insider-Perspektive)</div>
+        <div class="hook">Finance-Profis sagen: 'Ein guter Event muss beeindrucken.' Ich widerspreche.</div>
+        <div class="cta">Abstimmen + kommentieren warum. Rosanna antwortet jedem Votum.</div>
+      </div>
+      <div class="dcard-intent">
+        <span class="badge b-eng">Engagement</span>
+        <div style="font-size:10px;color:var(--gray-text);margin-top:4px">Spark conversation</div>
+      </div>
+      <div class="dcard-fmt">
+        <span class="fmt">Poll</span>
+        <div class="var-note">Variation A</div>
+        <div class="var-note">Engagement</div>
+      </div>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="dcard" style="--accent:#5BA3FF">
+      <div class="dcard-day">
+        <div class="dn">Fr</div>
+        <div class="dl">4. Jul</div>
+      </div>
+      <div class="dcard-pillar">
+        <span class="pillar-chip">P3 Struktur</span>
+        <div style="font-size:10px;color:var(--gray-text)">Methodology</div>
+      </div>
+      <div class="dcard-main">
+        <div class="topic">Nicht das grösste Budget gewinnt - 3 Dinge, die ich bei jedem Event kläre, bevor ich einen Franken ausgebe</div>
+        <div class="hook">3 Dinge kläre ich zuerst. Bevor ich irgendetwas buche.</div>
+        <div class="cta">Was klären Sie zuerst, wenn Sie einen Anlass planen?</div>
+      </div>
+      <div class="dcard-intent">
+        <span class="badge b-edu">Educating</span>
+        <div style="font-size:10px;color:var(--gray-text);margin-top:4px">Best intent this week</div>
+      </div>
+      <div class="dcard-fmt">
+        <span class="fmt">Text Post</span>
+        <div class="var-note">Variation A</div>
+        <div class="var-note">Framework-Heavy</div>
+      </div>
+    </div>
+
+  </div><!-- end day-cards -->
+
+  <!-- STATS -->
+  <div class="sec">Wochen-Statistik</div>
+  <div class="stats-grid">
+    <div class="scard">
+      <div class="sl">Posts gesamt</div>
+      <div class="sn">5</div>
+    </div>
+    <div class="scard">
+      <div class="sl">Konversions-Quote</div>
+      <div class="sn">20%</div>
+      <div class="sd">1 Soft Sell · unter Limit</div>
+    </div>
+    <div class="scard">
+      <div class="sl">Formate genutzt</div>
+      <div class="sn">4</div>
+      <div class="sd">Carousel · Story · Text · Poll</div>
+    </div>
+    <div class="scard">
+      <div class="sl">Pillar-Abdeckung</div>
+      <div class="sn">4/4</div>
+      <div class="sd">Alle Territorien aktiv</div>
+    </div>
+  </div>
+
+  <!-- INTENT BAR -->
+  <div class="ibar-wrap">
+    <div style="font-size:11px;color:var(--gray-text);margin-bottom:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">Intent-Verteilung</div>
+    <div class="ibar">
+      <div class="ibar-seg" style="width:40%;background:#1E6FE0;"></div>
+      <div class="ibar-seg" style="width:20%;background:#16A34A;"></div>
+      <div class="ibar-seg" style="width:20%;background:#D97706;"></div>
+      <div class="ibar-seg" style="width:20%;background:#7C3AED;"></div>
+    </div>
+    <div class="leg">
+      <div class="leg-item"><div class="leg-dot" style="background:#1E6FE0"></div>Educating x2 · 40%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#16A34A"></div>Nurturing x1 · 20%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#D97706"></div>Soft Selling x1 · 20%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#7C3AED"></div>Engagement x1 · 20%</div>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note">
+    Priorität diese Woche: <strong>Den Dienstag-Story-Post zuerst schreiben.</strong> Er ist die emotionale Grundlage der ganzen Woche. Wenn er sitzt, baut alles andere auf diesem Vertrauen auf. Der Mittwoch-Soft-Sell wirkt am stärksten, nachdem Dienstag die Verbindung hergestellt hat. Jeden Post laut vorlesen und mit dem Voice DNA-Profil abgleichen, bevor er gesendet wird. Kein Post ohne diesen Check.
+  </div>
+
+  <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+window.addEventListener('load', function(){
+  if(!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('.ohead', {y:26, opacity:0, scale:.98, duration:.7, ease:'power3.out'});
+  gsap.from('.ohead h1', {y:14, opacity:0, duration:.7, delay:.12, ease:'power3.out'});
+  gsap.from('.pcell', {y:18, opacity:0, duration:.5, stagger:.07, ease:'power2.out', delay:.3});
+  gsap.from('.dcard', {y:20, opacity:0, duration:.5, stagger:.1, ease:'power2.out', scrollTrigger:{trigger:'.day-cards', start:'top 88%'}});
+  gsap.from('.scard', {y:16, opacity:0, duration:.45, stagger:.08, ease:'power2.out', scrollTrigger:{trigger:'.stats-grid', start:'top 90%'}});
+  gsap.from('.note', {y:16, opacity:0, duration:.5, ease:'power2.out', scrollTrigger:{trigger:'.note', start:'top 92%'}});
+});
+</script>
+</body>
+</html>

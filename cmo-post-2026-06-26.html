@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMO Daily Post · 26. Juni 2026 · VisionMoments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0B2545; --primary-light:#C9A227;
+    --black:#0A0A0A; --ink:#15151A; --white:#FFFFFF; --off-white:#F8F7F5;
+    --gray:#E4E3E0; --gray-text:#5b5b62; --gray-light:#F2F1EE;
+    --good:#16A34A; --warn:#D97706; --bad:#DC2626;
+    --r-md:14px; --r-lg:22px; --pill:9999px;
+    --sh:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.06);
+    --grad:linear-gradient(135deg, color-mix(in srgb,var(--primary) 85%, #000) 0%, var(--primary) 52%, var(--primary-light) 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Rethink Sans',sans-serif;
+    background:
+      radial-gradient(80% 60% at 96% -12%, color-mix(in srgb,var(--primary) 12%, transparent), transparent 60%),
+      radial-gradient(60% 50% at 0% 6%, color-mix(in srgb,var(--primary-light) 8%, transparent), transparent 55%),
+      var(--off-white);
+    background-attachment:fixed;
+    color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .doc{max-width:840px;margin:0 auto;padding:34px 22px 70px;}
+
+  /* Header band */
+  .ohead{
+    border-radius:var(--r-md);padding:26px 28px;margin-bottom:22px;
+    color:#fff;background:var(--grad);
+    box-shadow:0 16px 42px color-mix(in srgb,var(--primary) 30%, transparent);
+    position:relative;overflow:hidden;
+  }
+  .ohead::after{
+    content:"";position:absolute;width:240px;height:240px;
+    border-radius:50%;background:rgba(255,255,255,.08);
+    top:-120px;right:-60px;pointer-events:none;
+  }
+  .ohead .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.80;font-weight:600;}
+  .ohead h1{font-size:clamp(22px,4vw,30px);font-weight:800;letter-spacing:-.02em;margin:6px 0 4px;}
+  .ohead .d{font-size:13px;opacity:.82;}
+  .ohead .gold{color:var(--primary-light);font-weight:700;}
+
+  /* Building blocks */
+  .sec{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-text);font-weight:700;margin:22px 0 10px;}
+  .card{
+    background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);
+    box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;
+    border-left:4px solid var(--primary);
+  }
+  .card h4{font-size:11px;letter-spacing:.10em;text-transform:uppercase;color:var(--gray-text);margin-bottom:12px;font-weight:700;}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;font-size:14px;border-bottom:1px solid var(--gray-light);line-height:1.5;}
+  .row:last-child{border-bottom:none;}
+  .tagi{font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--pill);margin-left:auto;white-space:nowrap;flex-shrink:0;align-self:center;}
+  .t-grn{background:#e7f6ee;color:var(--good);}
+  .t-grey{background:var(--gray-light);color:var(--gray-text);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+
+  /* LinkedIn post card */
+  .lipost{
+    background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);
+    box-shadow:var(--sh);padding:22px;margin-bottom:14px;
+  }
+  .lihead{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .av{
+    width:48px;height:48px;border-radius:50%;
+    background:var(--grad);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px;flex-shrink:0;
+  }
+  .lihead .nm{font-weight:700;font-size:15px;line-height:1.3;}
+  .lihead .mt{font-size:12px;color:var(--gray-text);margin-top:2px;}
+  .lipost .post{font-size:15px;line-height:1.8;white-space:pre-line;color:var(--ink);}
+  .hook-highlight{
+    display:inline;
+    background:linear-gradient(120deg, color-mix(in srgb,var(--primary-light) 20%,transparent) 0%, color-mix(in srgb,var(--primary-light) 20%,transparent) 100%);
+    font-weight:700;
+    border-radius:3px;
+    padding:1px 2px;
+  }
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--gray-light);}
+  .chip{font-size:12px;font-weight:600;background:var(--gray-light);color:var(--gray-text);padding:5px 12px;border-radius:var(--pill);}
+  .chip-gold{background:color-mix(in srgb,var(--primary-light) 15%,#fff);color:color-mix(in srgb,var(--primary-light) 80%,#000);border:1px solid color-mix(in srgb,var(--primary-light) 30%,#fff);}
+
+  /* Score badge */
+  .score-wrap{text-align:center;margin:18px 0 6px;}
+  .score-pill{
+    display:inline-flex;align-items:center;gap:10px;
+    background:color-mix(in srgb,var(--primary) 8%,#fff);
+    color:var(--primary);font-weight:800;font-size:15px;
+    padding:10px 24px;border-radius:var(--pill);
+    border:1.5px solid color-mix(in srgb,var(--primary) 25%,#fff);
+  }
+  .score-dot{width:10px;height:10px;border-radius:50%;background:var(--primary-light);}
+
+  /* Pinned comments */
+  .comment-block{margin-bottom:18px;}
+  .comment-block:last-child{margin-bottom:0;}
+  .comment-label{
+    font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--primary-light);
+    margin-bottom:6px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .comment-label::after{content:'';flex:1;height:1px;background:var(--gray-light);}
+  .comment-text{font-size:14px;line-height:1.7;color:var(--ink);}
+
+  /* Closing note */
+  .note{
+    background:linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb,var(--primary-light) 30%, var(--primary)) 100%);
+    color:#fff;border-radius:var(--r-md);padding:18px 22px;font-size:14px;
+    margin-top:6px;box-shadow:0 12px 32px color-mix(in srgb,var(--primary) 25%,transparent);
+    line-height:1.7;
+  }
+  .note b{color:var(--primary-light);}
+  .note .warning{font-size:12px;opacity:.75;margin-top:8px;font-style:italic;}
+
+  footer{text-align:center;padding:32px 22px 10px;color:var(--gray-text);font-size:13px;}
+  footer b{color:var(--ink);}
+
+  @media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- Header -->
+  <div class="ohead">
+    <div class="k">CMO · Daily Post &nbsp;·&nbsp; VisionMoments</div>
+    <h1>Today's post, in your voice</h1>
+    <div class="d">
+      Freitag, 26. Juni 2026 &nbsp;·&nbsp;
+      <span class="gold">Pillar: Client Story</span> &nbsp;·&nbsp;
+      Variation B (Story-Flow) &nbsp;·&nbsp; Soft Selling &nbsp;·&nbsp; Scored 4 / 4
+    </div>
+  </div>
+
+  <!-- LinkedIn post card -->
+  <div class="lipost">
+    <div class="lihead">
+      <div class="av">RS</div>
+      <div>
+        <div class="nm">Rosanna Sivillica &nbsp;· 1st</div>
+        <div class="mt">Founder, VisionMoments &nbsp;· Premium Event Organisation DACH &nbsp;· now</div>
+      </div>
+    </div>
+    <div class="post"><span class="hook-highlight">Für einen Umzug von Zürich nach Meilen bekam ich eine Louis-Vuitton-Tasche.</span>
+
+Ich habe nichts angepackt. Aber alles war bereit, als er nach Hause kam.
+
+Mein damaliger Chef übertrug mir seinen kompletten Umzug.
+Er erklärte mir, was er brauchte. Dann liess er mich arbeiten.
+
+Ich organisierte die Umzugsfirma, koordinierte den ganzen Ablauf.
+Fotografierte den Kleiderschrank in der alten Wohnung.
+Gab den Umzugsmännern die Fotos: Bitte so einrichten.
+Richtete die Küche ein. Jeden Gegenstand an seinem Platz.
+
+Als er nach Hause kam, war alles fertig.
+Er musste keine einzige Frage stellen.
+
+Die Tasche hatte ich nicht erwartet.
+Aber diese Dankbarkeit, die ich gespürt habe, war echt.
+Er hatte sich um nichts kümmern müssen.
+
+Das ist es, was meine Kunden kaufen.
+Dieses Gefühl: Ich übergebe es. Es wird richtig gemacht.
+
+Führungskräfte in Finance und Immobilien wissen, was sie wollen.
+Sie haben keine Zeit, jeden Schritt zu überwachen.
+Ein gutes Briefing am Anfang reicht.
+
+Ich höre zu. Ich finde heraus, was der Event bewirken soll.
+Welches Aha-Erlebnis beim Gast entstehen soll. Wo noch etwas fehlt.
+Dann übernehme ich. Komplett.
+
+Sie können loslassen.
+
+Planen Sie 2026 ein Event im DACH-Raum?
+Schreiben Sie mir eine kurze Nachricht. Wir schauen, ob das zusammenpasst.
+
+Rosanna
+
+P.S. Wenn ich etwas sage, dann mache ich es. Das ist mein Versprechen.</div>
+    <div class="chips">
+      <span class="chip">~1 352 Zeichen</span>
+      <span class="chip chip-gold">Hook: Pattern Interrupt</span>
+      <span class="chip">Keine em-Striche</span>
+      <span class="chip">Variation B</span>
+      <span class="chip">Voice DNA: RS</span>
+    </div>
+  </div>
+
+  <!-- Hook options + Publish check -->
+  <div class="grid2">
+    <div class="card">
+      <h4>Hook-Optionen</h4>
+      <div class="row">
+        <span>Für einen Umzug von Zürich nach Meilen bekam ich eine Louis-Vuitton-Tasche.</span>
+        <span class="tagi t-grn">gewählt</span>
+      </div>
+      <div class="row">Mein Chef kam nach Hause. Alles war eingerichtet. Er musste nichts fragen.</div>
+      <div class="row">Dein Event scheitert nicht am Budget. Es scheitert am Briefing.</div>
+      <div class="row">Ich habe lange gebraucht, um Kontrolle wirklich loszulassen.</div>
+      <div class="row">Was passiert, wenn ein Kunde wirklich aufhört zu fragen?</div>
+    </div>
+    <div class="card">
+      <h4>Publish-Check</h4>
+      <div class="row">Stoppt den Scroll<span class="tagi t-grn">✓</span></div>
+      <div class="row">Stimme passt (Voice DNA Rosanna)<span class="tagi t-grn">✓</span></div>
+      <div class="row">Konkretes Detail (LV-Tasche, Zürich, Meilen)<span class="tagi t-grn">✓</span></div>
+      <div class="row">Klarer CTA, eine einzige Aufforderung<span class="tagi t-grn">✓</span></div>
+      <div class="row">P.S. vorhanden<span class="tagi t-grn">✓</span></div>
+      <div class="row">Keine em-Striche, keine verbotenen Wörter<span class="tagi t-grn">✓</span></div>
+      <div class="row">Kein AI-Muster gefunden<span class="tagi t-grn">✓</span></div>
+    </div>
+  </div>
+
+  <!-- Invisibility Diagnostic -->
+  <div class="score-wrap">
+    <span class="score-pill">
+      <span class="score-dot"></span>
+      Invisibility Diagnostic: 4 / 4
+    </span>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <h4>Invisibility Diagnostic · Breakdown</h4>
+    <div class="row">
+      <span><b>Voice</b> &nbsp;Klingt wie eine spezifische Person: warm, direkt, kein Jargon, Schweizer Stil.</span>
+      <span class="tagi t-grn">1 / 1</span>
+    </div>
+    <div class="row">
+      <span><b>POV</b> &nbsp;Klare Haltung: Kunden kaufen das Loslassen, nicht die Logistik.</span>
+      <span class="tagi t-grn">1 / 1</span>
+    </div>
+    <div class="row">
+      <span><b>Specificität</b> &nbsp;LV-Tasche, Kleiderschrank fotografiert, Umzug Zürich nach Meilen.</span>
+      <span class="tagi t-grn">1 / 1</span>
+    </div>
+    <div class="row">
+      <span><b>Asking</b> &nbsp;Direkter CTA (Nachricht schreiben) und emotionale Einladung (loslassen).</span>
+      <span class="tagi t-grn">1 / 1</span>
+    </div>
+  </div>
+
+  <!-- Hook selection rationale -->
+  <div class="card" style="border-left-color:var(--primary-light);">
+    <h4>Hook-Wahl · Begründung</h4>
+    <div style="font-size:14px;line-height:1.7;color:var(--ink);">
+      Hook 5 (Pattern Interrupt) gewählt: Die Louis-Vuitton-Tasche für einen Umzug ist spezifisch genug, um sofort zu stoppen, überraschend genug, um den Open Loop zu erzeugen ("Wie kommt man zu einer LV-Tasche durch Organisieren?"), und konkret genug, um nicht erfunden zu wirken. Hooks 1-4 sind Alternativen mit unterschiedlichem Stil: Result Lead, Confession, Contrarian und Curiosity Gap.
+    </div>
+  </div>
+
+  <!-- Pinned comments -->
+  <div class="sec">Pinned Comment Optionen</div>
+  <div class="card">
+    <div class="comment-block">
+      <div class="comment-label">1 · Extend</div>
+      <div class="comment-text">Was viele unterschätzen: Ein gutes Briefing spart mehr Zeit als jede Checkliste. Ich frage immer drei Dinge: Was soll beim Gast ankommen? Was darf auf keinen Fall fehlen? Und was hat beim letzten Mal nicht funktioniert? Das reicht, um anzufangen.</div>
+    </div>
+    <div class="comment-block">
+      <div class="comment-label">2 · Humanise</div>
+      <div class="comment-text">Als ich das Licht ausmachte und die alte Wohnung hinter mir schloss, wusste ich: Er wird nach Hause kommen und einfach da sein können. Das war das Gefühl. Mehr braucht es nicht.</div>
+    </div>
+    <div class="comment-block">
+      <div class="comment-label">3 · CTA Amplifier</div>
+      <div class="comment-text">Falls Sie schreiben wollen: Datum, ungefähre Gästezahl und was der Event bewirken soll. Drei Zeilen genügen. Ich melde mich innerhalb von 24 Stunden.</div>
+    </div>
+  </div>
+
+  <!-- Closing note -->
+  <div class="note">
+    Post steht. Invisibility Diagnostic: <b>4 / 4.</b> Variante B, Soft Selling, Story-Flow.
+    Kein Kalender-Eintrag gefunden: Topic manuell gewählt (stärkste dokumentierte Story, Meilen-Umzug).
+    <div class="warning">Dieser Post ist ein Entwurf. Bitte lesen, freigeben, dann posten. Nichts wird automatisch veröffentlicht.</div>
+  </div>
+
+  <footer>Der Kopf denkt. Das Team arbeitet. Du genehmigst. &nbsp;·&nbsp; <b>Built by Daniel Paul · Purely Personal</b></footer>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+window.addEventListener('load', function(){
+  if(!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('.ohead',{y:24,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
+  gsap.from('.ohead h1',{y:12,opacity:0,duration:.65,delay:.14,ease:'power3.out'});
+  gsap.from('.lipost',{y:22,opacity:0,duration:.6,delay:.25,ease:'power2.out'});
+  gsap.from('.card,.grid2,.score-wrap,.note',{
+    y:18,opacity:0,duration:.5,stagger:.08,ease:'power2.out',
+    scrollTrigger:{trigger:'.doc',start:'top 80%'}
+  });
+});
+</script>
+</body>
+</html>

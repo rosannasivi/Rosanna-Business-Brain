@@ -1,416 +1,963 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRO · Weekly Prospect Pack · Purely Personal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>CRO Weekly Prospects | VisionMoments | 26. Juni 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   :root{
-    --primary:#0B2545; --primary-light:#C9A227;
-    --black:#0A0A0A; --ink:#15151A; --white:#FFFFFF; --off-white:#F8F7F5;
-    --gray:#E4E3E0; --gray-text:#5b5b62; --gray-light:#F2F1EE;
-    --good:#16A34A; --warn:#D97706; --bad:#DC2626;
-    --r-md:14px; --r-lg:22px; --pill:9999px;
-    --sh:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.06);
-    --grad:linear-gradient(135deg, color-mix(in srgb,var(--primary) 90%, #000) 0%, var(--primary) 55%, var(--primary-light) 100%);
+    --bg:#0A0A0A; --surface:#111111; --surface-2:#181818;
+    --navy:#0B2545; --gold:#C9A227; --gold-lt:#E2B93B;
+    --text:#F0EDE6; --muted:#888; --faint:#444;
+    --hot:#FF4136; --warm:#FF851B; --cold:#4A90D9;
+    --driver:#9B59B6; --expressive:#E74C3C; --amiable:#27AE60; --analytical:#2980B9;
+    --border:rgba(201,162,39,0.15);
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{font-family:'Rethink Sans',sans-serif;background:radial-gradient(80% 60% at 96% -12%, color-mix(in srgb,var(--primary) 10%, transparent), transparent 60%), radial-gradient(60% 50% at 0% 6%, color-mix(in srgb,var(--primary-light) 8%, transparent), transparent 55%), var(--off-white);background-attachment:fixed;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .doc{max-width:840px;margin:0 auto;padding:34px 22px 70px;}
+  body{background:var(--bg);color:var(--text);font-family:'Rethink Sans',system-ui,sans-serif;font-size:15px;line-height:1.65;}
 
-  .ohead{border-radius:var(--r-md);padding:26px 28px;margin-bottom:22px;color:#fff;background:var(--grad);box-shadow:0 16px 42px color-mix(in srgb,var(--primary) 30%, transparent);position:relative;overflow:hidden;}
-  .ohead::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);top:-120px;right:-60px;pointer-events:none;}
-  .ohead .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;font-weight:600;}
-  .ohead h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.02em;margin:5px 0 3px;}
-  .ohead .d{font-size:13px;opacity:.85;}
+  /* HEADER */
+  .hdr{background:linear-gradient(135deg,#0B2545 0%,#0A0A0A 60%);border-bottom:1px solid var(--border);padding:52px 48px 44px;position:relative;overflow:hidden;}
+  .hdr::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 70%);pointer-events:none;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .hdr h1{font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.15;margin-bottom:8px;}
+  .hdr .sub{font-size:14px;color:var(--muted);margin-bottom:36px;}
+  .hdr .sub span{color:var(--gold);font-weight:600;}
+  .stats{display:flex;gap:40px;flex-wrap:wrap;}
+  .s-item{display:flex;flex-direction:column;}
+  .s-num{font-size:36px;font-weight:800;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums;}
+  .s-lbl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+  .s-div{width:1px;background:var(--border);align-self:stretch;margin:4px 0;}
 
-  .sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);font-weight:700;margin:24px 0 12px;}
-  .card{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;border-left:4px solid var(--primary);}
-  .card h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);margin-bottom:12px;}
-  .lead{font-size:16px;}
-  .row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:15px;border-bottom:1px solid var(--gray-light);}
-  .row:last-child{border-bottom:none;}
-  .tagi{font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--pill);margin-left:auto;white-space:nowrap;flex-shrink:0;}
-  .t-red{background:#fdecec;color:var(--bad);} .t-amb{background:#fdf1de;color:var(--warn);}
-  .t-grey{background:var(--gray-light);color:var(--gray-text);} .t-grn{background:#e7f6ee;color:var(--good);} .t-blue{background:#e6f0fc;color:#1E6FE0;} .t-navy{background:rgba(11,37,69,.10);color:#0B2545;}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .stat{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;position:relative;overflow:hidden;}
-  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
-  .stat .l{font-size:12px;color:var(--gray-text);} .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .stat .delta{font-size:13px;font-weight:700;margin-top:2px;}
-  .note{background:linear-gradient(135deg, var(--ink) 0%, color-mix(in srgb,var(--primary) 40%, var(--ink)) 100%);color:#fff;border-radius:var(--r-md);padding:18px 22px;font-size:15px;margin-top:6px;box-shadow:0 14px 36px rgba(0,0,0,.16);}
-  .note b{color:var(--primary-light);}
+  /* MAIN */
+  .main{max-width:1080px;margin:0 auto;padding:44px 28px 80px;}
+  .sec-title{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .divider{height:1px;background:var(--border);margin:48px 0;}
 
-  .pcard{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;}
-  .pcard.hot{border-left:4px solid var(--primary-light);}
-  .pcard.warm{border-left:4px solid var(--primary);}
-  .pcard.flagged{border-left:4px solid var(--gray-text);opacity:.8;}
-  .ph{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
-  .av2{width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
-  .ph .nm{font-weight:700;font-size:15px;line-height:1.3;}
-  .ph .rl{font-size:12px;color:var(--gray-text);margin-top:2px;}
-  .signal{font-size:13px;color:var(--gray-text);margin-bottom:10px;padding:8px 12px;background:var(--gray-light);border-radius:8px;}
-  .signal b{color:var(--ink);}
-  .seq{margin-top:12px;}
-  .seq-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);margin-bottom:8px;}
-  .msg{font-size:13px;line-height:1.7;background:var(--gray-light);border-radius:8px;padding:10px 12px;margin-bottom:6px;}
-  .msg-num{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
-  .scores{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
-  .score-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:var(--pill);background:rgba(11,37,69,.08);color:#0B2545;}
+  /* INFO BANNER */
+  .info-banner{background:rgba(74,144,217,.07);border:1px solid rgba(74,144,217,.2);border-radius:8px;padding:14px 18px;margin-bottom:36px;font-size:13px;color:#7bb8e8;display:flex;gap:10px;align-items:flex-start;}
 
-  .flag-section{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:16px 20px;margin-bottom:14px;}
-  .flag-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14px;border-bottom:1px solid var(--gray-light);}
-  .flag-row:last-child{border-bottom:none;}
-  .flag-row .fn{font-weight:600;}
-  .flag-row .fr{font-size:12px;color:var(--gray-text);}
+  /* PROSPECT CARDS */
+  .p-grid{display:flex;flex-direction:column;gap:28px;}
+  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;opacity:0;transform:translateY(18px);}
+  .pcard.flag-card{border-color:rgba(255,133,27,.35);}
 
-  footer{text-align:center;padding:30px 22px 10px;color:var(--gray-text);font-size:13px;}
-  footer b{color:var(--ink);}
+  .flag-bar{background:rgba(255,133,27,.08);border-bottom:1px solid rgba(255,133,27,.2);padding:8px 24px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--warm);display:flex;align-items:center;gap:6px;}
 
-  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
+  .card-top{background:var(--surface-2);border-bottom:1px solid var(--border);padding:22px 24px;display:flex;align-items:flex-start;gap:16px;}
+  .p-num{background:var(--navy);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:1px;border-radius:5px;padding:3px 9px;flex-shrink:0;margin-top:3px;}
+  .p-info{flex:1;min-width:0;}
+  .p-name{font-size:19px;font-weight:700;margin-bottom:2px;}
+  .p-title{font-size:12px;color:var(--gold);font-weight:600;margin-bottom:1px;}
+  .p-co{font-size:12px;color:var(--muted);}
+  .p-url{font-size:11px;color:var(--faint);margin-top:3px;word-break:break-all;}
+  .p-url a{color:var(--faint);text-decoration:none;}
+  .p-url a:hover{color:var(--gold);}
+  .badges{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0;}
+  .fit-row{display:flex;align-items:center;gap:6px;}
+  .fit-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+  .dots{display:flex;gap:3px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--faint);}
+  .dot.on{background:var(--gold);}
+  .dot.half{background:rgba(201,162,39,.4);}
+  .tbadge{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+  .t-cold{background:rgba(74,144,217,.1);color:var(--cold);border:1px solid rgba(74,144,217,.25);}
+  .t-warm{background:rgba(255,133,27,.1);color:var(--warm);border:1px solid rgba(255,133,27,.25);}
+  .sbadge{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+  .sb-d{background:rgba(155,89,182,.1);color:var(--driver);border:1px solid rgba(155,89,182,.2);}
+  .sb-e{background:rgba(231,76,60,.1);color:var(--expressive);border:1px solid rgba(231,76,60,.2);}
+  .sb-am{background:rgba(39,174,96,.1);color:var(--amiable);border:1px solid rgba(39,174,96,.2);}
+  .sb-an{background:rgba(41,128,185,.1);color:var(--analytical);border:1px solid rgba(41,128,185,.2);}
+
+  /* INTEL */
+  .intel{padding:20px 24px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:640px){.intel{grid-template-columns:1fr;}}
+  .ib{}
+  .ib-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+  .ib-val{font-size:13.5px;color:var(--text);line-height:1.55;}
+  .hook{font-size:14.5px;font-style:italic;color:var(--gold-lt);font-weight:600;line-height:1.4;}
+  .flag-note{font-size:12px;color:var(--warm);background:rgba(255,133,27,.07);border:1px solid rgba(255,133,27,.18);border-radius:6px;padding:8px 11px;margin-top:6px;}
+
+  /* DM SEQUENCE */
+  .dm-wrap{padding:20px 24px;}
+  .dm-sec-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+  .dm-seq{display:flex;flex-direction:column;gap:12px;}
+  .dm-msg{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .dm-hdr{background:var(--surface-2);padding:9px 14px;display:flex;align-items:center;gap:9px;}
+  .dm-tag{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:2px 7px;border-radius:4px;}
+  .dm-meta{font-size:11px;color:var(--faint);flex:1;}
+  .dm-chars{font-size:10px;color:var(--faint);font-variant-numeric:tabular-nums;}
+  .dm-body{padding:13px 14px;font-size:13px;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+  .dm-alert{background:rgba(255,133,27,.05);border-top:1px solid rgba(255,133,27,.15);padding:7px 14px;font-size:11px;color:var(--warm);}
+
+  /* PIPELINE */
+  .pipeline{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;}
+  .pipeline-empty{text-align:center;padding:36px 20px;}
+  .pe-text{font-size:14px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto;}
+
+  /* CLOSING NOTE */
+  .closing{margin-top:36px;background:linear-gradient(135deg,rgba(11,37,69,.55) 0%,rgba(201,162,39,.06) 100%);border:1px solid var(--border);border-radius:12px;padding:26px 28px;}
+  .cl-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .cl-text{font-size:14.5px;line-height:1.7;}
+  .cl-text strong{color:var(--gold);}
+
+  /* FOOTER */
+  .ftr{border-top:1px solid var(--border);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .ftr-l{font-size:12px;color:var(--faint);}
+  .ftr-r{font-size:11px;color:var(--faint);text-align:right;max-width:480px;}
 </style>
 </head>
-<body data-theme="standard">
-<div class="doc">
+<body>
 
-  <!-- HEADER -->
-  <div class="ohead">
-    <div class="k">CRO · Weekly Prospect Pack</div>
-    <h1>10 found. 1 hot. 5 sequences ready.</h1>
-    <div class="d">Finance, banking and real estate executives in Switzerland · DMs drafted, nothing sent</div>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="eyebrow">CRO Weekly Prospect Pack</div>
+  <h1>10 qualifizierte Prospects.<br>Vollstandige Sequenzen. Bereit zum Prufen.</h1>
+  <p class="sub">VisionMoments &middot; <span>Rosanna Sivillica</span> &middot; 26. Juni 2026</p>
+  <div class="stats">
+    <div class="s-item"><span class="s-num" id="n1">0</span><span class="s-lbl">Prospects</span></div>
+    <div class="s-div"></div>
+    <div class="s-item"><span class="s-num" id="n2">0</span><span class="s-lbl">Warm leads</span></div>
+    <div class="s-div"></div>
+    <div class="s-item"><span class="s-num" id="n3">0</span><span class="s-lbl">DMs verfasst</span></div>
+    <div class="s-div"></div>
+    <div class="s-item"><span class="s-num" id="n4">0</span><span class="s-lbl">Pipeline-Deals</span></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="info-banner">
+    <span style="flex-shrink:0;font-size:15px;">&#9432;</span>
+    <span><strong>ICP dieser Woche:</strong> Leitende Fuhrungskrafte in Banking, Financial Services und Luxury Real Estate (DACH). Zielprofil: Busy executives, die klare Vorstellungen haben, aber keine Zeit fur die eigenstandige Event-Koordination. Sprache aller DMs: Deutsch (Schweizer Stil). Alle 10 Prospects sind auf LinkedIn in der Schweiz aktiv.</span>
   </div>
 
-  <!-- STATS -->
-  <div class="grid3">
-    <div class="stat">
-      <div class="l">Prospects found</div>
-      <div class="n"><span class="count" data-to="10">0</span></div>
-    </div>
-    <div class="stat">
-      <div class="l">Hot (score 7+)</div>
-      <div class="n" style="color:var(--good)"><span class="count" data-to="1">0</span></div>
-    </div>
-    <div class="stat">
-      <div class="l">DMs drafted</div>
-      <div class="n"><span class="count" data-to="5">0</span></div>
-    </div>
-  </div>
+  <div class="sec-title">Prospect Intelligence &amp; DM-Sequenzen</div>
+  <div class="p-grid">
 
-  <!-- TOP PROSPECTS -->
-  <div class="sec">Top prospects · ready to send</div>
+    <!-- ===== #01 DANIEL MURNER ===== -->
+    <div class="pcard" id="c1">
+      <div class="card-top">
+        <div class="p-num">#01</div>
+        <div class="p-info">
+          <div class="p-name">Daniel Murner</div>
+          <div class="p-title">Managing Director Private Banking</div>
+          <div class="p-co">EFG International &middot; Zurich</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/daniel-m%C3%BCrner-43807944" target="_blank">linkedin.com/in/daniel-murner-43807944</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+            <span class="fit-lbl">9/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-an">Analytical</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"EFG klart die Portfolios ihrer Kunden bis ins letzte Detail. Events verdienen dasselbe."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Peer Opener.</strong> Rosannas 20-Jahr-Netzwerk im Schweizer Finanzsektor macht sie zur Peerin. EFGs Ruf fur Prazision ist der Aufhanger: nicht Dienstleistung, sondern gemeinsamer Anspruch.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">MD Private Banking in Zurich = regelmasige Kundenanlade, Investment-Dinners, HNW-Events. Starkes strukturelles Bedurfnis.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Zu wenig Zeit fur Details. Hohe Anspruche. Bisherige Delegation hat das genaue Gefuhl, das er meinte, nie wirklich getroffen.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">249 Z.</span></div>
+            <div class="dm-body">Hallo Daniel, EFG International steht fur Prazision im Private Banking. Ich organisiere Events im Finanz- und Immobiliensektor, bei denen Kunden am Ende wissen: Das war genau richtig. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Daniel,
 
-  <!-- PROSPECT 1: MARCUS LIER — HOT -->
-  <div class="pcard hot">
-    <div class="ph">
-      <div class="av2">ML</div>
-      <div>
-        <div class="nm">Marcus Lier</div>
-        <div class="rl">Head of Marketing EMEA &amp; Americas · Synpulse · Zurich</div>
-      </div>
-      <span class="tagi t-grn" style="margin-left:auto">HOT 8/10</span>
-    </div>
-    <div class="scores">
-      <span class="score-chip">Financial services</span>
-      <span class="score-chip">Zurich</span>
-      <span class="score-chip">Senior · EMEA scope</span>
-      <span class="score-chip">Driver / Analytical</span>
-      <span class="score-chip">Cold outreach</span>
-    </div>
-    <div class="signal">
-      <b>Signal:</b> Leads marketing for a financial services consulting firm across EMEA and Americas from Zurich. His role sits at the intersection of strategy, client engagement and events. Strong ICP match: finance sector, high standards, large geography to coordinate. Profile is detailed and precise.
-    </div>
-    <div class="signal" style="background:rgba(201,162,39,.10);">
-      <b>Human hook:</b> "You're running marketing across EMEA and Americas for a financial services firm from Zurich. Client events must be a significant part of how you build trust in each market."
-    </div>
-    <div class="seq">
-      <div class="seq-label">5-message sequence · Directness Play (he values precision, match it)</div>
-      <div class="msg">
-        <div class="msg-num">01 · Connection request (224 chars)</div>
-        Hi Marcus, I noticed your work bridging marketing and strategy at Synpulse across EMEA. Financial services clients have very specific expectations for how they're brought together in person. I help senior leaders get that right. Worth connecting?
-      </div>
-      <div class="msg">
-        <div class="msg-num">02 · Icebreaker (send after accepted)</div>
-        Hi Marcus, thanks for connecting. Running marketing across EMEA and Americas for a financial services firm from Zurich, client events and in-person engagement must be a core part of how you build trust across markets. What does that currently look like for your team?
-      </div>
-      <div class="msg">
-        <div class="msg-num">03 · Value-add (2-3 days if no reply)</div>
-        Something I see often with financial services marketing teams: the content strategy is sharp but the in-person moments feel generic compared to the brand. The firms that stand out are the ones where the event brief is built with the same rigour as the go-to-market plan. Curious if that gap is something you think about.
-      </div>
-      <div class="msg">
-        <div class="msg-num">04 · Pivot (3-4 days if still no reply)</div>
-        Different angle, Marcus. We're working with a few Zurich-based financial services teams on client dinners and partner events this quarter. If that type of work ever lands on your desk, I'd be happy to show you what precision looks like on the event side.
-      </div>
-      <div class="msg">
-        <div class="msg-num">05 · Clean exit (5-7 days)</div>
-        Happy to leave the door open, Marcus. If corporate events ever become a priority, or you know someone at Synpulse facing that question, I'm easy to find. Thanks for the connection.
-      </div>
-    </div>
-  </div>
+EFG verwaltet die Portfolios seiner Kunden bis ins letzte Detail. Die Events, die diese Beziehungen begleiten, verdienen dasselbe.
 
-  <!-- PROSPECT 2: VALERIE BLASCO — WARM -->
-  <div class="pcard warm">
-    <div class="ph">
-      <div class="av2">VB</div>
-      <div>
-        <div class="nm">Valerie Blasco</div>
-        <div class="rl">HR VP / Strategic Partner · Geneva</div>
-      </div>
-      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
-    </div>
-    <div class="scores">
-      <span class="score-chip">Geneva · multinational</span>
-      <span class="score-chip">C-suite adjacent</span>
-      <span class="score-chip">Expressive / Driver</span>
-      <span class="score-chip">20+ years experience</span>
-    </div>
-    <div class="signal">
-      <b>Signal:</b> Senior HR leader with multinational scope across five continents. HR leaders at this level oversee leadership retreats, team events and executive offsite experiences. Geneva network is strong for VisionMoments.
-    </div>
-    <div class="signal" style="background:rgba(201,162,39,.10);">
-      <b>Human hook:</b> "Building HR across five continents means coordinating internal events in very different cultural contexts. That's a specific challenge most event companies don't understand."
-    </div>
-    <div class="seq">
-      <div class="seq-label">5-message sequence · Peer Opener (acknowledge the scope, earn the question)</div>
-      <div class="msg">
-        <div class="msg-num">01 · Connection request (194 chars)</div>
-        Hi Valerie, your career building HR across five continents is genuinely rare. I work with senior teams in Switzerland on events that bring people together in ways they remember. Happy to connect.
-      </div>
-      <div class="msg">
-        <div class="msg-num">02 · Icebreaker</div>
-        Hi Valerie, thanks for connecting. Twenty-plus years coordinating people across that many cultures, the internal events and gatherings you've had to design over that career must have taught you exactly what separates memorable from forgettable. What's your experience been?
-      </div>
-      <div class="msg">
-        <div class="msg-num">03 · Value-add</div>
-        A lot of HR leaders I speak with say the same thing: the event looked right on paper but didn't land the way they wanted. Usually it comes down to the brief. The detail that gets missed is what the room should feel like when people leave, not just what the agenda says. Curious if that resonates in your world.
-      </div>
-      <div class="msg">
-        <div class="msg-num">04 · Pivot</div>
-        Valerie, different angle: are you currently in a role where you oversee corporate events or team experiences, or is that more in your past?
-      </div>
-      <div class="msg">
-        <div class="msg-num">05 · Clean exit</div>
-        Good to have connected, Valerie. If you or anyone in your Geneva network ever needs a trusted hand for a high-stakes corporate event in Switzerland, you know where to find me.
-      </div>
-    </div>
-  </div>
+Wie entscheiden Sie, wem Sie das Briefing fur Ihre Kundenanlade geben?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Daniel,
 
-  <!-- PROSPECT 3: DESIREE GALICHER — WARM -->
-  <div class="pcard warm">
-    <div class="ph">
-      <div class="av2">DG</div>
-      <div>
-        <div class="nm">Désirée Galicher</div>
-        <div class="rl">Fractional COO / CHRO · Lausanne · Open to 2026 opportunities</div>
-      </div>
-      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
-    </div>
-    <div class="scores">
-      <span class="score-chip">Lausanne</span>
-      <span class="score-chip">Works with founders</span>
-      <span class="score-chip">Actively networking</span>
-      <span class="score-chip">Analytical / Driver</span>
-    </div>
-    <div class="signal">
-      <b>Signal:</b> Fractional COO working directly with founders and executive teams. Actively looking for 2026 work - she is actively networking on LinkedIn right now. Her clients are exactly Rosanna's ICP. She is a potential referral source as well as a direct prospect.
-    </div>
-    <div class="signal" style="background:rgba(201,162,39,.10);">
-      <b>Human hook:</b> "Bringing calm to complexity for executive teams is exactly how I'd describe what a good event organiser does. You free the leader to be present, not operational."
-    </div>
-    <div class="seq">
-      <div class="seq-label">5-message sequence · Pattern Interrupt (connect her language to yours)</div>
-      <div class="msg">
-        <div class="msg-num">01 · Connection request (148 chars)</div>
-        Hi Désirée, the way you describe bringing calm to complexity for executive teams is exactly how I think about event organisation. I'd love to connect.
-      </div>
-      <div class="msg">
-        <div class="msg-num">02 · Icebreaker</div>
-        Hi Désirée, thanks for connecting. Working closely with founders and executive teams on strategy and operations, do corporate events or team experiences ever come up as part of what they need to think through?
-      </div>
-      <div class="msg">
-        <div class="msg-num">03 · Value-add</div>
-        Something I see often with executives: the event gets delegated late, the brief is vague, and the result feels generic. The ones that work start with a clear picture of what the room should feel like when people leave. Is that a conversation you find yourself having with the leaders you support?
-      </div>
-      <div class="msg">
-        <div class="msg-num">04 · Pivot</div>
-        Slight change of direction, Désirée. We sometimes work with fractional executives who refer us to the founders and leadership teams they support. Is that something that could make sense in your world?
-      </div>
-      <div class="msg">
-        <div class="msg-num">05 · Clean exit</div>
-        I'll leave this here, Désirée. If it becomes relevant for your own work or a client, you know where I am. Good luck with the 2026 calendar.
-      </div>
-    </div>
-  </div>
+Ich habe einmal fur einen Private-Banking-Kunden einen Abend vorbereitet, bei dem der Einladende mir einen einzigen Satz gegeben hat: "Es soll sich anfuhlen, als ware ich schon dort gewesen."
 
-  <!-- PROSPECT 4: OWEN McCALL — WARM -->
-  <div class="pcard warm">
-    <div class="ph">
-      <div class="av2">OM</div>
-      <div>
-        <div class="nm">Owen McCall</div>
-        <div class="rl">Marketing and Comms Leader · Fintech / Web3 · Zurich</div>
-      </div>
-      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
-    </div>
-    <div class="scores">
-      <span class="score-chip">Fintech · Zurich</span>
-      <span class="score-chip">Premium profile</span>
-      <span class="score-chip">Expressive</span>
-      <span class="score-chip">Story-driven communicator</span>
-    </div>
-    <div class="signal">
-      <b>Signal:</b> Leads marketing for fintech and Web3 companies in Zurich. Premium LinkedIn profile. His summary centres on storytelling and human connection - resonates with Rosanna's approach. Fintech events (client dinners, partner launches, investor events) are a real need in Zurich.
-    </div>
-    <div class="signal" style="background:rgba(201,162,39,.10);">
-      <b>Human hook:</b> "Your point about people connecting with ideas through stories - that's the brief I give every event. The content is the experience."
-    </div>
-    <div class="seq">
-      <div class="seq-label">5-message sequence · Peer Opener (speak his language - stories, human connection)</div>
-      <div class="msg">
-        <div class="msg-num">01 · Connection request (186 chars)</div>
-        Hi Owen, your point about people connecting with ideas through stories caught my attention. I help fintech brands in Zurich create in-person moments their clients don't forget. Worth connecting.
-      </div>
-      <div class="msg">
-        <div class="msg-num">02 · Icebreaker</div>
-        Hi Owen, thanks for connecting. Building marketing in fintech and Web3 across markets, live events and brand experiences must come up as part of the mix. What does that currently look like for you?
-      </div>
-      <div class="msg">
-        <div class="msg-num">03 · Value-add</div>
-        What I've noticed with fintech marketing in Zurich: the digital content is sharp but the in-person moments often feel generic compared to the brand. The teams that stand out are the ones where the event reflects the same precision and story clarity as the rest of their work. Curious if that gap is something you think about.
-      </div>
-      <div class="msg">
-        <div class="msg-num">04 · Pivot</div>
-        Different angle, Owen. We're working with a few Zurich-based fintech teams on client dinners and partner events this quarter. If that type of work ever lands on your desk, I'd love to show you what we do.
-      </div>
-      <div class="msg">
-        <div class="msg-num">05 · Clean exit</div>
-        Happy to leave the door open, Owen. If events ever become a bigger part of your strategy or you know someone facing that question, I'm easy to find. Thanks for the connection.
-      </div>
-    </div>
-  </div>
+Wir haben es so umgesetzt, dass er nichts mehr koordinieren musste.
 
-  <!-- PROSPECT 5: DAVID CAUSSE — WARM -->
-  <div class="pcard warm">
-    <div class="ph">
-      <div class="av2">DC</div>
-      <div>
-        <div class="nm">David Causse</div>
-        <div class="rl">HR Leader · Luxury / FMCG / Oil and Gas · Geneva</div>
-      </div>
-      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
-    </div>
-    <div class="scores">
-      <span class="score-chip">Geneva</span>
-      <span class="score-chip">Luxury sector</span>
-      <span class="score-chip">Premium profile</span>
-      <span class="score-chip">Amiable / Expressive</span>
-    </div>
-    <div class="signal">
-      <b>Signal:</b> HR leader with experience in luxury and oil &amp; gas - two sectors with very high event standards. Geneva location. Premium profile indicates active networking. Luxury sector crossover is a strong fit for VisionMoments.
-    </div>
-    <div class="signal" style="background:rgba(201,162,39,.10);">
-      <b>Human hook:</b> "Luxury and oil and gas - two industries where the event experience is a direct statement about the brand. The standard is non-negotiable in both."
-    </div>
-    <div class="seq">
-      <div class="seq-label">5-message sequence · Peer Opener (connect on shared standards)</div>
-      <div class="msg">
-        <div class="msg-num">01 · Connection request (169 chars)</div>
-        Hi David, your background across luxury and oil and gas caught my eye - two industries where the event experience is a direct reflection of the brand. I'd love to connect.
-      </div>
-      <div class="msg">
-        <div class="msg-num">02 · Icebreaker</div>
-        Hi David, thanks for connecting. Luxury and oil and gas - two very different environments but both with extremely high expectations for how you bring people together. What's your experience been with corporate events in those sectors?
-      </div>
-      <div class="msg">
-        <div class="msg-num">03 · Value-add</div>
-        The pattern I see with luxury brands: they invest heavily in the product and the communication but the event experience gets delegated too late and loses the thread. The brief doesn't match the brand. Is that something you've run into?
-      </div>
-      <div class="msg">
-        <div class="msg-num">04 · Pivot</div>
-        David, slight change of direction. Are you currently in a role where corporate events are part of your scope, or more focused on other areas right now?
-      </div>
-      <div class="msg">
-        <div class="msg-num">05 · Clean exit</div>
-        Good to have connected, David. If events ever cross your desk or you know someone in Geneva who'd value a trusted organiser, you know where to find me.
-      </div>
-    </div>
-  </div>
+Was beschaftigt Sie bei solchen Abenden am meisten?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Daniel,
 
-  <!-- FLAGGED PROSPECTS -->
-  <div class="sec">Flagged prospects · confirm before sequencing</div>
-  <div class="flag-section">
-    <div style="font-size:13px;color:var(--gray-text);margin-bottom:12px;">These 5 prospects scored below 6/10 against your ICP. Review before deciding to pursue. Each one is flagged for a specific reason.</div>
-    <div class="flag-row">
-      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">MF</div>
-      <div style="flex:1;">
-        <div class="fn">Marta Fiocco</div>
-        <div class="fr">Executive Assistant with events background · Lugano · 5/10</div>
-        <div class="fr" style="margin-top:2px;">Flagged: She is a service provider (EA/events), not a buyer. Referral potential is moderate - she may know executives who need events. Pursue only if referral angle is clear.</div>
+Ich frage aus einer anderen Richtung: Wann war das letzte Mal, dass Sie nach einem Event einfach nur gesagt haben, "Genau so sollte es sein"?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Daniel, ich lasse es dabei. Falls Sie irgendwann ein Event planen, bei dem Sie loslassen mochten, wissen Sie, wo Sie mich finden. Gerne bleibe ich in Ihrem Netzwerk.</div>
+          </div>
+        </div>
       </div>
-      <span class="tagi t-amb">review</span>
     </div>
-    <div class="flag-row">
-      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">AL</div>
-      <div style="flex:1;">
-        <div class="fn">Anna Lenz</div>
-        <div class="fr">Head of HR · Nestlé · Vevey · 5/10</div>
-        <div class="fr" style="margin-top:2px;">Flagged: FMCG, not finance or real estate. Nestlé does organise large internal events. Worth keeping if you want to expand beyond finance sector. Low priority for now.</div>
+
+    <!-- ===== #02 CHRISTOPH WAELTI ===== -->
+    <div class="pcard" id="c2">
+      <div class="card-top">
+        <div class="p-num">#02</div>
+        <div class="p-info">
+          <div class="p-name">Christoph Waelti</div>
+          <div class="p-title">CFO | COO | Board Member (NED) | FP&amp;A</div>
+          <div class="p-co">Financial Services &amp; Growth Companies &middot; Zurich</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/christoph-waelti" target="_blank">linkedin.com/in/christoph-waelti</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">8/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-d">Driver</span>
+        </div>
       </div>
-      <span class="tagi t-amb">review</span>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"CFO und COO in einem. Der Event sollte Ihnen keine zusatzliche Arbeit machen."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Directness Play.</strong> CFO/COO-Typen haben keine Zeit fur Warm-up. Hook spricht die Doppelrolle an und positioniert Entlastung statt Dienstleistung. Kein Pitch. Eine Beobachtung.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">Doppelrolle CFO + COO + Board = maximale Zeitknappheit. Er hat gleichzeitig das Budget und den Bedarf.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Event-Koordination landet bei ihm, weil niemand sonst das Briefing wirklich versteht. Das kostet ihn Zeit, die er nicht hat.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">199 Z.</span></div>
+            <div class="dm-body">Hallo Christoph, CFO und COO gleichzeitig, das erfordert maximale Effizienz in allem. Ich organisiere Events im Finanzsektor, bei denen Fuhrungskrafte komplett loslassen konnen. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Christoph,
+
+CFO und COO in einem. Der Event sollte Ihnen keine zusatzliche Arbeit machen.
+
+Wie viel Ihrer eigenen Zeit fliesst aktuell in die Planung von Geschaftsanladen?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Christoph,
+
+Ein Kunde aus dem Finanzbereich hat mir einmal gesagt: "Ich weiss, was ich will, aber ich habe niemanden, der es wirklich umsetzt." Das war der Anfang unserer Zusammenarbeit.
+
+Was ware fur Sie der Unterschied zwischen gut und genau richtig?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Christoph,
+
+Ich frage anders: Bei welchem Anlass in den nachsten sechs Monaten mochten Sie sich wirklich keine Gedanken mehr machen?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Christoph, ich lasse es hierbei. Wenn irgendwann ein Anlass auf dem Kalender steht, fur den Sie einfach loslassen mochten, stehe ich gerne zur Verfugung.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flag-row">
-      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">PA</div>
-      <div style="flex:1;">
-        <div class="fn">Pierpaolo Aureli</div>
-        <div class="fr">Global VP HR · Pharma / FMCG · Basel · 4/10</div>
-        <div class="fr" style="margin-top:2px;">Flagged: Pharmaceutical sector, not finance or real estate. Event needs exist but not aligned with your ICP. Deprioritise.</div>
+
+    <!-- ===== #03 PAUL HEGRAEUS ===== -->
+    <div class="pcard" id="c3">
+      <div class="card-top">
+        <div class="p-num">#03</div>
+        <div class="p-info">
+          <div class="p-name">Paul Hegraeus</div>
+          <div class="p-title">Founder, Hegraeus Advisory | Real-estate Investor &amp; Financier</div>
+          <div class="p-co">Hegraeus Advisory &middot; Arosa, Graubunden &middot; 1.686 Follower</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/hegraeus" target="_blank">linkedin.com/in/hegraeus</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">8/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-am">Amiable</span>
+        </div>
       </div>
-      <span class="tagi t-grey">skip</span>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Wer von Arosa aus sieben Sprachmarkte bedient, weiss: Details entscheiden."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Pattern Interrupt.</strong> Sieben Sprachen + Arosa + eigenes Advisory ist eine Kombination, die kein anderer DM anspricht. Es zeigt, dass jemand wirklich hingeschaut hat.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">Eigenes Advisory + Real Estate-Investitionen = private Investorenevents, exklusive Partner-Gesprache. 1.686 Follower zeigt ein aktives Netzwerk mit Reichweite.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Kein internes Event-Team. Hoher Anspruch an Prazision und Vertraulichkeit. Beides selten in einem Anbieter.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">215 Z.</span></div>
+            <div class="dm-body">Hallo Paul, Arosa als Basis, sieben Sprachen und ein eigenes Advisory in der Immobilienwelt, das ist eine ungewohnliche Kombination. Ich organisiere Events fur Fachleute im Finanz- und Immobiliensektor. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Paul,
+
+Wer von Arosa aus sieben Sprachmarkte bedient, weiss: Details entscheiden.
+
+Wie sehen Ihre Anlasse fur Investoren oder Kunden aktuell aus?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Paul,
+
+Manchmal ist der wertvollste Teil eines Anlasses nicht das Programm, sondern das Gesprach, das danach im richtigen Moment entsteht.
+
+Was war der letzte Anlass, bei dem das wirklich so passiert ist?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Paul,
+
+Kurze Frage aus einer anderen Richtung: Wenn Sie in Ihrer Firma einen Abend fur ausgewahlte Partner organisieren, wem vertrauen Sie das an?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Paul, ich lasse es dabei. Falls irgendwann ein Anlass geplant ist, bei dem Sie mochten, dass alles einfach stimmt, ohne selbst jedes Detail zu koordinieren, ich bin da.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flag-row">
-      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">MC</div>
-      <div style="flex:1;">
-        <div class="fn">Mike Ciabatti</div>
-        <div class="fr">Reputation and Narrative Strategy · Switzerland · 3/10</div>
-        <div class="fr" style="margin-top:2px;">Flagged: Not an ICP match. Reputation/OSINT specialist. No clear event need. Skip.</div>
+
+    <!-- ===== #04 PETER MOERTL ===== -->
+    <div class="pcard" id="c4">
+      <div class="card-top">
+        <div class="p-num">#04</div>
+        <div class="p-info">
+          <div class="p-name">Peter Moertl</div>
+          <div class="p-title">Chairman, CEO &amp; Managing Partner</div>
+          <div class="p-co">Premier Suisse Estates &middot; Schweiz</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/pmoertl" target="_blank">linkedin.com/in/pmoertl</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+            <span class="fit-lbl">9/10</span>
+          </div>
+          <span class="tbadge t-warm">Warm</span>
+          <span class="sbadge sb-d">Driver</span>
+        </div>
       </div>
-      <span class="tagi t-grey">skip</span>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Premier Suisse Estates fuhrt 'premier' im Namen. Die Events dahinter sollten es beweisen."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Peer Opener.</strong> Beide bewegen sich im Schweizer Premium-Markt. Rosannas 20-Jahr-Netzwerk im Finanz- und Immobiliensektor macht sie zur Peerin. Die Einladung basiert auf gemeinsamem Anspruch, nicht auf einem Angebot.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val"><strong>Warm:</strong> Luxusimmobilien = kontinuierliche Property-Launches, Investorenabende, Besichtigungsevents. Starkes strukturelles und saisonales Bedurfnis.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Das Produkt ist Premium. Der Rahmen muss es sein. Interne Koordination trifft selten das Niveau des Markenprodukts.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">256 Z.</span></div>
+            <div class="dm-body">Hallo Peter, Premier Suisse Estates setzt den Standard fur Luxusimmobilien in der Schweiz. Ich plane Events im Immobilien- und Finanzbereich, bei denen Kunden am Ende sagen: Das war genau das Niveau, das ich erwartet habe. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Peter,
+
+Premier Suisse Estates fuhrt "premier" im Namen. Die Events dahinter sollten es beweisen.
+
+Wie organisieren Sie aktuell Ihre Immobilien-Launches oder Investorenabende?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Peter,
+
+Ein Immobilienkunde hat mir einmal gesagt, sein grosster Anlass sei super gelaufen, aber er habe eine Woche davor nicht geschlafen.
+
+Nicht weil etwas schiefging. Sondern weil er alles selbst koordiniert hat.
+
+Was ware fur Sie der Unterschied, wenn das jemand anderes ubernimmt?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Peter,
+
+Andere Richtung: Wann finden bei Premier Suisse Estates die nachsten grossen Kundenanlade statt, Fruhling, Herbst, oder beides?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Peter, ich lasse es dabei. Wenn Sie irgendwann einen Launch oder Investorenabend planen, bei dem Sie sich um nichts ausser dem Ergebnis kummern mochten, wissen Sie, wo Sie mich finden.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flag-row">
-      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">BV</div>
-      <div style="flex:1;">
-        <div class="fn">Bernard Van der Stichele</div>
-        <div class="fr">Senior Director Global Marketing · Biotech · Switzerland · 4/10</div>
-        <div class="fr" style="margin-top:2px;">Flagged: Pharma and biotech, not finance or real estate. Large-company marketing director could need events but outside your defined ICP. Deprioritise.</div>
+
+    <!-- ===== #05 JEAN-FRANCOIS DEMIERRE ===== -->
+    <div class="pcard" id="c5">
+      <div class="card-top">
+        <div class="p-num">#05</div>
+        <div class="p-info">
+          <div class="p-name">Jean-Francois Demierre</div>
+          <div class="p-title">Head Private Wealth Geneva | Deputy Region Head Swiss Onshore</div>
+          <div class="p-co">UBS (ex Credit Suisse) &middot; Genf</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/jean-fran%C3%A7ois-demierre-422ba86" target="_blank">linkedin.com/in/jean-francois-demierre-422ba86</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">8/10</span>
+          </div>
+          <span class="tbadge t-warm">Warm</span>
+          <span class="sbadge sb-an">Analytical</span>
+        </div>
       </div>
-      <span class="tagi t-grey">skip</span>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"CS-Integration, neue Strukturen, und trotzdem: Kunden mussen sich sicher fuhlen."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Authority Flip.</strong> Positioniert Rosanna als jemanden, der in einer turbulenten Phase die Kontrolle zuruckgibt. Nicht als Lieferantin, sondern als Expertin, die versteht, was gerade auf dem Spiel steht.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val"><strong>Warm:</strong> CS-UBS-Fusion = aktive Mandantenretention. Vertrauen-schaffende Events sind jetzt wichtiger als je zuvor. Optimaler Timing-Einstieg.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Sprachhinweis</div>
+          <div class="ib-val">Franzosischer Name, Genf-Basis. DM auf Deutsch ist geeignet. Wenn Profil-Kommunikation auf Franzosisch oder Englisch ist: Sequenz entsprechend anpassen.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">258 Z.</span></div>
+            <div class="dm-body">Hallo Jean-Francois, Private Wealth im post-CS-Umfeld zu fuhren verlangt mehr als je zuvor. Ich organisiere Kundenanlade fur Fuhrungskrafte im Finanzbereich, bei denen alles stimmt, damit Sie sich auf die Beziehungen konzentrieren konnen. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Jean-Francois,
+
+CS-Integration, neue Strukturen, und trotzdem mussen Kunden das Gefuhl haben: Hier stimmt alles noch.
+
+Was war der letzte Anlass bei Ihrem Team, der dieses Gefuhl transportiert hat?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Jean-Francois,
+
+Kundenanlade in Private Banking erfullen eine einzige Aufgabe: Der Mandant geht nach Hause und weiss, warum er geblieben ist.
+
+Wie bereiten Sie das intern vor?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Jean-Francois,
+
+Direktere Frage: Wenn Sie in Ihrem Team uber den nachsten grossen Abend sprechen, was ist die grosste Koordinationsaufgabe, die dabei zu Ihnen zuruckkommt?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Jean-Francois, ich lasse es dabei. Wenn Sie irgendwann einen Mandantenabend planen, bei dem Sie wirklich loslassen mochten, stehe ich gerne zur Verfugung.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== #06 JACOB BERG ===== -->
+    <div class="pcard" id="c6">
+      <div class="card-top">
+        <div class="p-num">#06</div>
+        <div class="p-info">
+          <div class="p-name">Jacob Berg</div>
+          <div class="p-title">Senior Professional</div>
+          <div class="p-co">Rothschild &amp; Co &middot; Zurich &middot; 1.128 Follower</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/jacob-berg-b44b95" target="_blank">linkedin.com/in/jacob-berg-b44b95</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">8/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-d">Driver</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Rothschild Zurich hat eine Reputation, die keinen mittelmassigen Abend erlaubt."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Peer Opener.</strong> Rothschild &amp; Co ist eines der exklusivsten Hauser im globalen Banking. Die Einstiegsfrage nimmt die Institution beim Wort: der Ruf verpflichtet zu einem bestimmten Niveau, auch bei Events.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">Rothschild Zurich organisiert regelmasig exklusive Advisory-Dinners, Deal-Closings, Kunden-Jahresabende. Hohes strukturelles Bedurfnis fur Event-Excellence.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Interne Koordination trifft nie ganz das Niveau der Marke. Locations und Timing werden selten von einer Person zusammengehalten.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">191 Z.</span></div>
+            <div class="dm-body">Hallo Jacob, Rothschild &amp; Co in Zurich steht fur Exklusivitat. Ich plane Events fur Fuhrungskrafte im Finanz- und Immobiliensektor, die diesem Anspruch gerecht werden. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Jacob,
+
+Rothschild Zurich hat eine Reputation, die keinen mittelmassigen Abend erlaubt.
+
+Wie sieht bei Ihnen die Planung von Kunden- oder Geschaftsanladen konkret aus?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Jacob,
+
+Ich kenne Fuhrungskrafte, die nach jedem grossen Anlass sagen: Es war gut. Aber nicht genau richtig.
+
+Was wurde "genau richtig" fur einen Abend bei Ihnen bedeuten?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Jacob,
+
+Andere Richtung: Welcher Anlass in Ihrem Kalender verlangt dieses Jahr das meiste an Koordination?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Jacob, ich lasse es dabei. Wenn irgendwann ein Anlass ansteht, bei dem Sie einfach loslassen mochten, ohne Abstriche beim Ergebnis, ich bin da.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== #07 ETIENNE WEBER ===== -->
+    <div class="pcard" id="c7">
+      <div class="card-top">
+        <div class="p-num">#07</div>
+        <div class="p-info">
+          <div class="p-name">Etienne Weber</div>
+          <div class="p-title">Senior Professional</div>
+          <div class="p-co">BlackRock &middot; Genf &middot; 2.364 Follower</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/etienne-weber-7357833" target="_blank">linkedin.com/in/etienne-weber-7357833</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">7/10</span>
+          </div>
+          <span class="tbadge t-warm">Warm</span>
+          <span class="sbadge sb-e">Expressive</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">[Manuelle Recherche vor M2]</div>
+          <div class="flag-note">AKTION VOR SENDEN: 2.364 Follower = aktive Prasenz. Letzten 3 LinkedIn-Posts von Etienne prufen. Einen spezifischen Beitrag als Aufhanger in M2 einbauen. Den Platzhalter unten ersetzen.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Authority Flip.</strong> Hohe Online-Sichtbarkeit trifft auf BlackRock-Standard. Rosanna positioniert sich als jemand, der das Offline-Erlebnis auf das Niveau seiner digitalen Prasenz bringt.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val"><strong>Warm:</strong> 2.364 Follower + BlackRock Geneva = aktive Fachperson im Asset-Management. Regelmasige Investor-Events bei globalem Standard.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Hohe digitale Prazision vs. Offline-Events, die nicht dieselbe Qualitat transportieren. Der Gap ist der Eintrittspunkt.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">222 Z.</span></div>
+            <div class="dm-body">Hallo Etienne, BlackRock Geneva setzt Standards im Asset Management. Ich organisiere Events im Finanz- und Immobilienbereich, bei denen Kunden nach Hause gehen und wissen: Das war genau richtig. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Hook-Platzhalter &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Etienne,
+
+[HOOK EINSETZEN: Einen konkreten Bezug zu einem seiner letzten LinkedIn-Posts hier einbauen, bevor diese Nachricht gesendet wird.]
+
+Was war der letzte BlackRock-Anlass, bei dem das Offline-Erlebnis genauso stark war wie Ihre Prasenz auf LinkedIn?</div>
+            <div class="dm-alert">Vor dem Senden: Letzten 3 Posts von Etienne Weber ansehen und einen spezifischen Bezug einbauen.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Etienne,
+
+Bei BlackRock sind die Erwartungen der Kunden hoch, auch bei Events.
+
+Was ist die grosste Herausforderung, wenn Sie Investorenabende oder Teamanlade koordinieren?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Etienne,
+
+Andere Richtung: Welcher Anlass in Ihrem nachsten Halbjahr ware der wichtigste, wenn er wirklich genau richtig wird?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Etienne, ich lasse es dabei. Falls Sie irgendwann jemanden suchen, der einen Anlass umsetzt, ohne dass Sie jeden Schritt begleiten mussen, ich freue mich auf das Gesprach.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== #08 RICHARD A J ===== -->
+    <div class="pcard" id="c8">
+      <div class="card-top">
+        <div class="p-num">#08</div>
+        <div class="p-info">
+          <div class="p-name">Richard A J.</div>
+          <div class="p-title">Managing Director | Board Director &amp; Advisor</div>
+          <div class="p-co">Global Real Estate &amp; Infrastructure (ex UBS Asset Management) &middot; Schweiz</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/richard-a-j-2bb8a610" target="_blank">linkedin.com/in/richard-a-j-2bb8a610</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">8/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-d">Driver</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Wer UBS Asset Management global verantwortet hat, setzt eigene Massstabe."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Peer Opener.</strong> Globale Karriere, jetzt unabhangig. Er setzt seinen eigenen Standard, nicht den einer Institution mehr. Rosanna trifft ihn auf diesem Level.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">Board-Mandate + unabhangige Beratertigkeit = Events fur Clients und Portfoliounternehmen, ohne internes Team. Hohe Eigenverantwortung und damit hohe Kaufbereitschaft.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">Board-Dinners und Investorenanlade mussen seine personliche Reputation reprasentieren. Jedes schiefgelaufene Detail tragt er selbst.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">240 Z.</span></div>
+            <div class="dm-body">Hallo Richard, globale Immobilien-Infrastruktur, UBS Asset Management und nun Board-Arbeit, ein beeindruckender Weg. Ich plane Events im Finanz- und Immobiliensektor fur Fuhrungskrafte, die genaue Massstabe haben. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Richard,
+
+Wer UBS Asset Management global verantwortet hat, setzt eigene Massstabe.
+
+Bei Events, die Sie als Board-Advisor oder selbststandig begleiten, wie hoch ist der Anspruch, und wer setzt ihn um?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Richard,
+
+Investorenanlade oder Board-Dinners funktionieren am besten, wenn sich der Gastgeber komplett auf die Gesprache konzentrieren kann.
+
+Was ware der eine Aspekt, den Sie einer Person, die den Abend organisiert, definitiv uberlassen wurden?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Richard,
+
+Kurze Frage: Wenn Sie in den nachsten Monaten einen Anlass fur ausgewahlte Partner oder Investoren planen, wie sieht der typischerweise aus?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Richard, ich lasse es dabei. Wenn irgendwann ein Anlass ansteht, bei dem Sie mochten, dass alles stimmt, ohne selbst jedes Detail zu koordinieren, bin ich gerne da.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== #09 NICOLAS DUCHENE ===== -->
+    <div class="pcard" id="c9">
+      <div class="card-top">
+        <div class="p-num">#09</div>
+        <div class="p-info">
+          <div class="p-name">Nicolas Duchene</div>
+          <div class="p-title">Limited Partner | Former C-level Private Banking Executive</div>
+          <div class="p-co">Teampact.ventures &middot; Schweiz</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/nicolas-duchene-80704711" target="_blank">linkedin.com/in/nicolas-duchene-80704711</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">7/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-e">Expressive</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Von C-level Private Banking zu Venture Capital, Sie erkennen Qualitat in drei Sekunden."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Pattern Interrupt.</strong> Der Wechsel von Private Banking C-level zu VC ist ungewohnlich. Den anzusprechen zeigt echtes Hinsehen, kein Template.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Timing-Signal</div>
+          <div class="ib-val">VC/LP-Bereich = regelmasige LP-Runden, Portfolio-Company-Events, Investor-Updates als Prasenz-Anlasse. Hybrider Hintergrund versteht beide Welten.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Schmerz-Profil</div>
+          <div class="ib-val">VC-Events haben eine andere Energie als Bankananlade. Aber der Qualitatsanspruch aus der Private-Banking-Vergangenheit bleibt. Dieser Gap ist der Eintrittspunkt.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">233 Z.</span></div>
+            <div class="dm-body">Hallo Nicolas, von C-level Private Banking zu Limited Partner im VC, das ist eine Richtungsentscheidung, die nicht viele treffen. Ich organisiere Events fur Fuhrungskrafte im Finanz- und Technologiebereich. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Nicolas,
+
+Von C-level Private Banking zu Venture Capital, Sie erkennen Qualitat in drei Sekunden.
+
+Wie sehen die Anlasse aus, die Teampact.ventures fur Portfolio-Unternehmen oder LPs organisiert?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Nicolas,
+
+VC-Events haben eine andere Energie als Bankananlade. Aber ein Anspruch bleibt gleich: Die richtigen Leute mussen das richtige Gesprach fuhren konnen.
+
+Was ist dabei Ihre grosste Herausforderung?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Nicolas,
+
+Andere Richtung: Wenn Sie an Ihre nachste LP-Runde oder ein Portfolio-Event denken, was ware der eine Aspekt, den Sie gerne auslagern wurden?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Nicolas, ich lasse es dabei. Falls irgendwann ein Anlass ansteht, bei dem Qualitat und Effizienz gleichzeitig gefragt sind, stehe ich gerne zur Verfugung.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== #10 DANIEL MULLER (FLAGGED) ===== -->
+    <div class="pcard flag-card" id="c10">
+      <div class="flag-bar">&#9888;&#xFE0E; Fit Score 6/10 &mdash; Bitte prufen, ob Sequence gesendet werden soll</div>
+      <div class="card-top" style="background:rgba(255,133,27,.04);">
+        <div class="p-num">#10</div>
+        <div class="p-info">
+          <div class="p-name">Daniel Muller</div>
+          <div class="p-title">CFO | Financial Services, Healthcare, Retail</div>
+          <div class="p-co">Multi-Industry CFO &middot; Schweiz</div>
+          <div class="p-url"><a href="https://ch.linkedin.com/in/daniel-m%C3%BCller-86841398" target="_blank">linkedin.com/in/daniel-muller-86841398</a></div>
+        </div>
+        <div class="badges">
+          <div class="fit-row">
+            <span class="fit-lbl">Fit</span>
+            <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot half"></div><div class="dot half"></div><div class="dot"></div><div class="dot"></div></div>
+            <span class="fit-lbl">6/10</span>
+          </div>
+          <span class="tbadge t-cold">Cold</span>
+          <span class="sbadge sb-an">Analytical</span>
+        </div>
+      </div>
+      <div class="intel">
+        <div class="ib">
+          <div class="ib-lbl">Human Hook</div>
+          <div class="ib-val hook">"Als CFO wissen Sie: Der erste Eindruck eines Events spiegelt das Unternehmen."</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Opening Strategy</div>
+          <div class="ib-val"><strong>Directness Play.</strong> CFOs schatzen Direktheit. Der Hook nimmt seine Rolle beim Wort: der erste Eindruck einer Firma zeigt sich auch im Rahmen ihrer Events.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Warum 6/10?</div>
+          <div class="ib-val">Multi-Industry CFO (FS + Healthcare + Retail) verwassert den Finanzsektor-Fokus. Kein klares Timing-Signal erkennbar. Events konnten intern gehandhabt werden.</div>
+        </div>
+        <div class="ib">
+          <div class="ib-lbl">Empfehlung</div>
+          <div class="ib-val">Sequence senden, wenn Pipeline-Slots frei sind. Wenn bereits 9 Verbindungsanfragen diese Woche versandt werden, diesen Slot fur einen spezifischeren Finance-CFO reservieren.</div>
+        </div>
+      </div>
+      <div class="dm-wrap">
+        <div class="dm-sec-lbl">5-Nachrichten-Sequenz</div>
+        <div class="dm-seq">
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M1</span><span class="dm-meta">Verbindungsanfrage &middot; max. 300 Zeichen</span><span class="dm-chars">214 Z.</span></div>
+            <div class="dm-body">Hallo Daniel, als CFO mit Banking- und Finance-Hintergrund kennen Sie den Unterschied zwischen "gut genug" und "genau richtig". Ich organisiere Events fur Fuhrungskrafte im Finanzsektor. Wurde mich freuen, vernetzt zu sein.</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M2</span><span class="dm-meta">Icebreaker &middot; Human Hook eingebettet &middot; eine Frage</span></div>
+            <div class="dm-body">Hallo Daniel,
+
+Als CFO wissen Sie: Der erste Eindruck eines Events spiegelt das Unternehmen.
+
+Wie entscheiden Sie aktuell, wem Sie die Organisation eines wichtigen Geschaftsanlasses anvertrauen?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M3</span><span class="dm-meta">Value Bridge &middot; Tag 2-3 &middot; eine Frage</span></div>
+            <div class="dm-body">Daniel,
+
+Das Schwierigste an Geschaftsanladen ist nicht das Budget, sondern die Zeit, die es braucht, bis alles wirklich stimmt.
+
+Was ist dabei Ihre grosste Herausforderung?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M4</span><span class="dm-meta">Pivot &middot; Tag 3-4 &middot; andere Richtung</span></div>
+            <div class="dm-body">Hallo Daniel,
+
+Andere Frage: Welcher Anlass in Ihrem Kalender brauchte dieses Jahr am meisten Aufmerksamkeit, wenn die Kapazitat da ware?</div>
+          </div>
+          <div class="dm-msg">
+            <div class="dm-hdr"><span class="dm-tag">M5</span><span class="dm-meta">Clean Exit &middot; Tag 5-7 &middot; Tur offen lassen</span></div>
+            <div class="dm-body">Daniel, ich lasse es dabei. Wenn Sie irgendwann einen Anlass planen, bei dem Sie die Planung einfach abgeben mochten, ohne Abstriche zu machen, stehe ich gerne zur Verfugung.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end p-grid -->
+
+  <!-- PIPELINE -->
+  <div class="divider"></div>
+  <div class="sec-title">Pipeline Triage</div>
+  <div class="pipeline">
+    <div class="pipeline-empty">
+      <p class="pe-text">
+        Keine aktiven Deals in Notion gefunden.<br><br>
+        Sobald erste Verbindungen akzeptiert werden und Antworten eingehen, werden hier Pipeline-Prioritaten (P1 / P2 / P3) und die nachsten Nachrichten eingeblendet.<br><br>
+        <strong style="color:var(--gold)">Tipp:</strong> Sobald jemand auf M2 antwortet, Deal in Notion anlegen und nachste Woche mit Priority 1 markieren.
+      </p>
     </div>
   </div>
 
   <!-- CLOSING NOTE -->
-  <div class="note">
-    Open with your highest-signal prospect first: <b>Marcus Lier at Synpulse, Zurich.</b> He leads marketing for a financial services firm across EMEA and Americas - client events are a real and recurring need in his role. His profile is precise and results-focused, so match that in your opener. Every DM above is a draft. You read it first. You send it.
+  <div class="closing">
+    <div class="cl-lbl">Hochstes Signal dieser Woche</div>
+    <p class="cl-text">
+      <strong>Peter Moertl (Premier Suisse Estates)</strong> ist der Prospect mit dem starksten strukturellen Bedurfnis und dem klarsten Brand-Alignment. Luxury Real Estate + Switzerland + regelmasige Launches = kontinuierlicher Event-Bedarf auf dem Niveau, das VisionMoments liefert. Seine Verbindungsanfrage als erste senden.<br><br>
+      <strong>Jean-Francois Demierre (UBS / ex Credit Suisse)</strong> ist der timing-sensitivste Prospect. Die CS-Integration ist in der schwierigsten Phase der Mandantenretention. Ein gut platzierter Anlass jetzt tragt mehr als zehn E-Mails. Sequence sofort aktivieren.
+    </p>
   </div>
 
-  <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
+</div><!-- end main -->
+
+<!-- FOOTER -->
+<div class="ftr">
+  <div class="ftr-l">VisionMoments &middot; Rosanna Sivillica &middot; CRO Weekly Prospects &middot; 26. Juni 2026</div>
+  <div class="ftr-r">Alle DMs sind Entwurfe zur Genehmigung. Keine Nachricht wurde gesendet. Jede Sequenz ist fur die genannte Person geschrieben und darf nicht anderweitig verwendet werden.</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  window.addEventListener('load',function(){
-    if(!window.gsap)return; gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.ohead',{y:26,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
-    gsap.from('.ohead h1',{y:14,opacity:0,duration:.7,delay:.12,ease:'power3.out'});
-    gsap.from('.stat,.pcard,.flag-section,.note',{y:20,opacity:0,duration:.55,stagger:.07,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
-    gsap.utils.toArray('.count').forEach(function(el){
-      var to=+el.dataset.to,o={v:0};
-      gsap.to(o,{v:to,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'},onUpdate:function(){el.textContent=Math.round(o.v).toLocaleString();}});
-    });
+  function countUp(el, target, ms) {
+    var start = performance.now();
+    function tick(now) {
+      var p = Math.min((now - start) / ms, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(e * target);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      countUp(document.getElementById('n1'), 10, 1200);
+      countUp(document.getElementById('n2'), 3, 1200);
+      countUp(document.getElementById('n3'), 50, 1400);
+      countUp(document.getElementById('n4'), 0, 600);
+    }, 300);
   });
+
+  var cards = document.querySelectorAll('.pcard');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        gsap.to(e.target, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  cards.forEach(function(c) { obs.observe(c); });
 </script>
 </body>
 </html>
