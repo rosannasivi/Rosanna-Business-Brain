@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COO Morning Brief · Purely Personal</title>
+<title>COO Morning Brief · 26 June 2026 · Purely Personal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --primary:#061C2F; --primary-light:#1A4A7A;
+    --primary:#E8294C; --primary-light:#F5607A;
     --black:#0A0A0A; --ink:#15151A; --white:#FFFFFF; --off-white:#F8F7F5;
     --gray:#E4E3E0; --gray-text:#5b5b62; --gray-light:#F2F1EE;
     --good:#16A34A; --warn:#D97706; --bad:#DC2626;
@@ -34,101 +34,150 @@
   .row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:15px;border-bottom:1px solid var(--gray-light);}
   .row:last-child{border-bottom:none;}
   .row .when{color:var(--gray-text);font-size:13px;width:74px;flex-shrink:0;}
-  .tagi{font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--pill);margin-left:auto;white-space:nowrap;}
-  .t-red{background:#fdecec;color:var(--bad);} .t-amb{background:#fdf1de;color:var(--warn);}
-  .t-grey{background:var(--gray-light);color:var(--gray-text);} .t-grn{background:#e7f6ee;color:var(--good);} .t-blue{background:#e6f0fc;color:#1E6FE0;}
+  .row-label{flex:1;font-size:14px;line-height:1.4;}
+  .row-label .sender{font-weight:600;display:block;margin-bottom:1px;}
+  .row-label .subj{color:var(--gray-text);font-size:13px;}
+  .tagi{font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--pill);margin-left:auto;flex-shrink:0;white-space:nowrap;}
+  .t-red{background:#fdecec;color:var(--bad);}
+  .t-amb{background:#fdf1de;color:var(--warn);}
+  .t-grey{background:var(--gray-light);color:var(--gray-text);}
+  .t-grn{background:#e7f6ee;color:var(--good);}
+  .t-blue{background:#e6f0fc;color:#1E6FE0;}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   .stat{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;position:relative;overflow:hidden;}
   .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
-  .stat .l{font-size:12px;color:var(--gray-text);} .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .stat .delta{font-size:13px;font-weight:700;margin-top:2px;} .up{color:var(--good);} .down{color:var(--bad);}
-  .bar{height:14px;border-radius:var(--pill);background:var(--gray-light);overflow:hidden;margin-top:10px;}
-  .bar i{display:block;height:100%;width:0;border-radius:var(--pill);background:linear-gradient(90deg,var(--primary),var(--primary-light));}
+  .stat .l{font-size:12px;color:var(--gray-text);}
+  .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat .hint{font-size:13px;color:var(--gray-text);margin-top:8px;line-height:1.5;}
   .note{background:linear-gradient(135deg, var(--ink) 0%, color-mix(in srgb,var(--primary) 26%, var(--ink)) 100%);color:#fff;border-radius:var(--r-md);padding:18px 22px;font-size:15px;margin-top:6px;box-shadow:0 14px 36px rgba(0,0,0,.16);}
   .note b{color:var(--primary-light);}
-  .empty{font-size:14px;color:var(--gray-text);padding:8px 0;font-style:italic;}
-  .event-detail{font-size:12px;color:var(--gray-text);margin-top:3px;}
-  .session-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--pill);background:rgba(232,41,76,0.10);color:var(--primary);margin-left:8px;}
-  .metric-prompt{font-size:13px;color:var(--gray-text);margin-top:8px;}
-  .qbox{width:100%;border:1px dashed var(--gray);border-radius:10px;padding:12px;font-family:inherit;font-size:14px;color:var(--gray-text);background:#fff;margin-top:8px;}
-
+  .event-name{flex:1;font-size:14px;line-height:1.4;}
+  .event-name strong{display:block;font-weight:600;}
+  .event-name a{color:var(--primary);font-size:12px;font-weight:600;text-decoration:none;}
+  .event-name a:hover{text-decoration:underline;}
+  .badge-final{display:inline-block;font-size:10px;font-weight:700;background:var(--primary);color:#fff;padding:2px 7px;border-radius:var(--pill);margin-bottom:3px;}
+  .empty-state{color:var(--gray-text);font-size:14px;font-style:italic;padding:6px 0;}
   footer{text-align:center;padding:30px 22px 10px;color:var(--gray-text);font-size:13px;}
   footer b{color:var(--ink);}
-
-  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr;}}
 </style>
 </head>
 <body data-theme="standard">
-  <div class="doc">
+<div class="doc">
 
-    <!-- HEADER -->
-    <div class="ohead">
-      <div class="k">COO · Morning Brief</div>
-      <h1>Good morning, Rosanna</h1>
-      <div class="d">Friday, 26 June 2026 · ran while you slept</div>
-    </div>
-
-    <!-- ONE LINE -->
-    <div class="card">
-      <h4>Today, in one line</h4>
-      <div class="lead">You have 1 big event taking up most of your morning and afternoon. Inbox is clear. Use the quiet gaps to set up your Notion tasks and content calendar so your AI team has something to work with.</div>
-    </div>
-
-    <!-- CALENDAR + INBOX -->
-    <div class="grid2">
-      <div class="card">
-        <h4>Calendar · 1 event</h4>
-        <div class="row">
-          <span class="when">10:00 AM</span>
-          10x with AI SG Bootcamp
-          <span class="session-badge">Session 3</span>
-        </div>
-        <div class="event-detail" style="padding: 4px 0 0 84px;">Ops + Finance + CEO Brain · until 3:00 PM · Zoom link in invite</div>
-      </div>
-
-      <div class="card">
-        <h4>Inbox · All clear</h4>
-        <div class="empty">No unread emails in the last 24 hours. Inbox is clean.</div>
-      </div>
-    </div>
-
-    <!-- OVERDUE + METRIC -->
-    <div class="grid2">
-      <div class="card">
-        <h4>Tasks</h4>
-        <div class="empty">No tasks found in Notion. Connect your task database or add tasks to see them here each morning.</div>
-      </div>
-
-      <div class="stat">
-        <div class="l">Key Metric</div>
-        <div class="n" style="font-size:20px;margin-top:8px;">Not set</div>
-        <div class="metric-prompt">Set one metric to track (DMs sent, profile views, revenue) and it will appear here each morning.</div>
-      </div>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="sec">Content</div>
-    <div class="card">
-      <h4>Today's post</h4>
-      <div class="empty">No content scheduled for today. Run your CMO to write today's LinkedIn post, or check your content calendar in Notion.</div>
-    </div>
-
-    <!-- CLOSING NOTE -->
-    <div class="note">One thing to move the needle today: <b>show up fully to Session 3 of the Bootcamp.</b> Ops, Finance, and the CEO Brain are the systems that make everything else run. Take notes, ask questions, and block 30 minutes after the session to implement one thing while it is fresh.</div>
-
-    <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
+  <div class="ohead">
+    <div class="k">COO · Morning brief</div>
+    <h1>Good morning, Rosanna</h1>
+    <div class="d">Friday, 26 June 2026 · ran while you slept</div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script>
-    window.addEventListener('load',function(){
-      if(!window.gsap)return; gsap.registerPlugin(ScrollTrigger);
-      gsap.from('.ohead',{y:26,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
-      gsap.from('.ohead h1',{y:14,opacity:0,duration:.7,delay:.12,ease:'power3.out'});
-      gsap.from('.card,.stat,.note',{y:20,opacity:0,duration:.55,stagger:.07,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
+  <div class="card">
+    <h4>Today, in one line</h4>
+    <div class="lead">The final bootcamp session runs 10:00 to 15:00. One starred message about your Arbeitslosenentschädigung needs attention after. Be present this morning, then clear the inbox.</div>
+  </div>
+
+  <div class="grid2">
+
+    <div class="card">
+      <h4>Today's Schedule</h4>
+      <div class="row">
+        <span class="when">10:00</span>
+        <div class="event-name">
+          <span class="badge-final">Final session</span>
+          <strong>10x with AI Bootcamp · Session 3</strong>
+          Ops, Finance + CEO Brain
+          <a href="https://us06web.zoom.us/j/85653326466?pwd=5w4EaY5SHpbElpU3VUdNsSDOvDeabv.1" target="_blank">Join Zoom</a>
+        </div>
+        <span class="tagi t-grn">until 15:00</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Inbox · 5 to action</h4>
+      <div class="row">
+        <div class="row-label">
+          <span class="sender">Job-Room (arbeit.swiss)</span>
+          <span class="subj">Neue Nachricht re: Arbeitslosenentschädigung</span>
+        </div>
+        <span class="tagi t-red">review</span>
+      </div>
+      <div class="row">
+        <div class="row-label">
+          <span class="sender">Booking.com</span>
+          <span class="subj">Your card has been pre-authorized for payment</span>
+        </div>
+        <span class="tagi t-amb">decide</span>
+      </div>
+      <div class="row">
+        <div class="row-label">
+          <span class="sender">GitHub</span>
+          <span class="subj">A first-party OAuth app was added to your account</span>
+        </div>
+        <span class="tagi t-amb">decide</span>
+      </div>
+      <div class="row">
+        <div class="row-label">
+          <span class="sender">ManyChat</span>
+          <span class="subj">Times Square Billboard · deadline 30 June</span>
+        </div>
+        <span class="tagi t-grey">decide</span>
+      </div>
+      <div class="row">
+        <div class="row-label">
+          <span class="sender">x28.ch (starred)</span>
+          <span class="subj">2 neue Executive Assistant Jobs</span>
+        </div>
+        <span class="tagi t-grey">fyi</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid2">
+
+    <div class="card">
+      <h4>Tasks · Due Today + Overdue</h4>
+      <div class="row">
+        <span class="empty-state">Notion is not set up with tasks yet. Connect it and add a task database to see your daily workload here.</span>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="l">Key Metric · Not set</div>
+      <div class="n" style="font-size:20px;color:var(--gray-text);background:none;-webkit-background-clip:unset;background-clip:unset;">Your number here</div>
+      <div class="hint">Pick one metric that tells you how the week is going, add it to your brain documents, and it will count up here every morning.</div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h4>Content Slot · Today</h4>
+    <div class="row">
+      <span class="empty-state">No content calendar found in Notion. Add a 30-day content calendar and today's post topic will appear here automatically.</span>
+    </div>
+  </div>
+
+  <div class="note">One thing to move the needle today: <b>Be fully present for the final bootcamp session and build your CEO Brain.</b> That system is what makes everything else run. After 15:00, open the Job-Room message about your Arbeitslosenentschädigung. It is starred. That means it matters.</div>
+
+  <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  window.addEventListener('load',function(){
+    if(!window.gsap)return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.ohead',{y:26,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
+    gsap.from('.ohead h1',{y:14,opacity:0,duration:.7,delay:.12,ease:'power3.out'});
+    gsap.from('.card,.stat,.note',{y:20,opacity:0,duration:.55,stagger:.07,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
+    gsap.utils.toArray('.count').forEach(function(el){
+      var to=+el.dataset.to,o={v:0};
+      gsap.to(o,{v:to,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'},onUpdate:function(){el.textContent=Math.round(o.v).toLocaleString();}});
     });
-  </script>
+    gsap.utils.toArray('.bar i').forEach(function(el){
+      gsap.to(el,{width:el.dataset.pct||'75%',duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 94%'}});
+    });
+  });
+</script>
 </body>
 </html>
