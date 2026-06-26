@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRO · Weekly Prospect Pack · Purely Personal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0B2545; --primary-light:#C9A227;
+    --black:#0A0A0A; --ink:#15151A; --white:#FFFFFF; --off-white:#F8F7F5;
+    --gray:#E4E3E0; --gray-text:#5b5b62; --gray-light:#F2F1EE;
+    --good:#16A34A; --warn:#D97706; --bad:#DC2626;
+    --r-md:14px; --r-lg:22px; --pill:9999px;
+    --sh:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.06);
+    --grad:linear-gradient(135deg, color-mix(in srgb,var(--primary) 90%, #000) 0%, var(--primary) 55%, var(--primary-light) 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Rethink Sans',sans-serif;background:radial-gradient(80% 60% at 96% -12%, color-mix(in srgb,var(--primary) 10%, transparent), transparent 60%), radial-gradient(60% 50% at 0% 6%, color-mix(in srgb,var(--primary-light) 8%, transparent), transparent 55%), var(--off-white);background-attachment:fixed;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .doc{max-width:840px;margin:0 auto;padding:34px 22px 70px;}
+
+  .ohead{border-radius:var(--r-md);padding:26px 28px;margin-bottom:22px;color:#fff;background:var(--grad);box-shadow:0 16px 42px color-mix(in srgb,var(--primary) 30%, transparent);position:relative;overflow:hidden;}
+  .ohead::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);top:-120px;right:-60px;pointer-events:none;}
+  .ohead .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;font-weight:600;}
+  .ohead h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.02em;margin:5px 0 3px;}
+  .ohead .d{font-size:13px;opacity:.85;}
+
+  .sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);font-weight:700;margin:24px 0 12px;}
+  .card{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;border-left:4px solid var(--primary);}
+  .card h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);margin-bottom:12px;}
+  .lead{font-size:16px;}
+  .row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:15px;border-bottom:1px solid var(--gray-light);}
+  .row:last-child{border-bottom:none;}
+  .tagi{font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--pill);margin-left:auto;white-space:nowrap;flex-shrink:0;}
+  .t-red{background:#fdecec;color:var(--bad);} .t-amb{background:#fdf1de;color:var(--warn);}
+  .t-grey{background:var(--gray-light);color:var(--gray-text);} .t-grn{background:#e7f6ee;color:var(--good);} .t-blue{background:#e6f0fc;color:#1E6FE0;} .t-navy{background:rgba(11,37,69,.10);color:#0B2545;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .stat{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;position:relative;overflow:hidden;}
+  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+  .stat .l{font-size:12px;color:var(--gray-text);} .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat .delta{font-size:13px;font-weight:700;margin-top:2px;}
+  .note{background:linear-gradient(135deg, var(--ink) 0%, color-mix(in srgb,var(--primary) 40%, var(--ink)) 100%);color:#fff;border-radius:var(--r-md);padding:18px 22px;font-size:15px;margin-top:6px;box-shadow:0 14px 36px rgba(0,0,0,.16);}
+  .note b{color:var(--primary-light);}
+
+  .pcard{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;}
+  .pcard.hot{border-left:4px solid var(--primary-light);}
+  .pcard.warm{border-left:4px solid var(--primary);}
+  .pcard.flagged{border-left:4px solid var(--gray-text);opacity:.8;}
+  .ph{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+  .av2{width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+  .ph .nm{font-weight:700;font-size:15px;line-height:1.3;}
+  .ph .rl{font-size:12px;color:var(--gray-text);margin-top:2px;}
+  .signal{font-size:13px;color:var(--gray-text);margin-bottom:10px;padding:8px 12px;background:var(--gray-light);border-radius:8px;}
+  .signal b{color:var(--ink);}
+  .seq{margin-top:12px;}
+  .seq-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);margin-bottom:8px;}
+  .msg{font-size:13px;line-height:1.7;background:var(--gray-light);border-radius:8px;padding:10px 12px;margin-bottom:6px;}
+  .msg-num{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+  .scores{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .score-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:var(--pill);background:rgba(11,37,69,.08);color:#0B2545;}
+
+  .flag-section{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:16px 20px;margin-bottom:14px;}
+  .flag-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14px;border-bottom:1px solid var(--gray-light);}
+  .flag-row:last-child{border-bottom:none;}
+  .flag-row .fn{font-weight:600;}
+  .flag-row .fr{font-size:12px;color:var(--gray-text);}
+
+  footer{text-align:center;padding:30px 22px 10px;color:var(--gray-text);font-size:13px;}
+  footer b{color:var(--ink);}
+
+  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-theme="standard">
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="ohead">
+    <div class="k">CRO · Weekly Prospect Pack</div>
+    <h1>10 found. 1 hot. 5 sequences ready.</h1>
+    <div class="d">Finance, banking and real estate executives in Switzerland · DMs drafted, nothing sent</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="grid3">
+    <div class="stat">
+      <div class="l">Prospects found</div>
+      <div class="n"><span class="count" data-to="10">0</span></div>
+    </div>
+    <div class="stat">
+      <div class="l">Hot (score 7+)</div>
+      <div class="n" style="color:var(--good)"><span class="count" data-to="1">0</span></div>
+    </div>
+    <div class="stat">
+      <div class="l">DMs drafted</div>
+      <div class="n"><span class="count" data-to="5">0</span></div>
+    </div>
+  </div>
+
+  <!-- TOP PROSPECTS -->
+  <div class="sec">Top prospects · ready to send</div>
+
+  <!-- PROSPECT 1: MARCUS LIER — HOT -->
+  <div class="pcard hot">
+    <div class="ph">
+      <div class="av2">ML</div>
+      <div>
+        <div class="nm">Marcus Lier</div>
+        <div class="rl">Head of Marketing EMEA &amp; Americas · Synpulse · Zurich</div>
+      </div>
+      <span class="tagi t-grn" style="margin-left:auto">HOT 8/10</span>
+    </div>
+    <div class="scores">
+      <span class="score-chip">Financial services</span>
+      <span class="score-chip">Zurich</span>
+      <span class="score-chip">Senior · EMEA scope</span>
+      <span class="score-chip">Driver / Analytical</span>
+      <span class="score-chip">Cold outreach</span>
+    </div>
+    <div class="signal">
+      <b>Signal:</b> Leads marketing for a financial services consulting firm across EMEA and Americas from Zurich. His role sits at the intersection of strategy, client engagement and events. Strong ICP match: finance sector, high standards, large geography to coordinate. Profile is detailed and precise.
+    </div>
+    <div class="signal" style="background:rgba(201,162,39,.10);">
+      <b>Human hook:</b> "You're running marketing across EMEA and Americas for a financial services firm from Zurich. Client events must be a significant part of how you build trust in each market."
+    </div>
+    <div class="seq">
+      <div class="seq-label">5-message sequence · Directness Play (he values precision, match it)</div>
+      <div class="msg">
+        <div class="msg-num">01 · Connection request (224 chars)</div>
+        Hi Marcus, I noticed your work bridging marketing and strategy at Synpulse across EMEA. Financial services clients have very specific expectations for how they're brought together in person. I help senior leaders get that right. Worth connecting?
+      </div>
+      <div class="msg">
+        <div class="msg-num">02 · Icebreaker (send after accepted)</div>
+        Hi Marcus, thanks for connecting. Running marketing across EMEA and Americas for a financial services firm from Zurich, client events and in-person engagement must be a core part of how you build trust across markets. What does that currently look like for your team?
+      </div>
+      <div class="msg">
+        <div class="msg-num">03 · Value-add (2-3 days if no reply)</div>
+        Something I see often with financial services marketing teams: the content strategy is sharp but the in-person moments feel generic compared to the brand. The firms that stand out are the ones where the event brief is built with the same rigour as the go-to-market plan. Curious if that gap is something you think about.
+      </div>
+      <div class="msg">
+        <div class="msg-num">04 · Pivot (3-4 days if still no reply)</div>
+        Different angle, Marcus. We're working with a few Zurich-based financial services teams on client dinners and partner events this quarter. If that type of work ever lands on your desk, I'd be happy to show you what precision looks like on the event side.
+      </div>
+      <div class="msg">
+        <div class="msg-num">05 · Clean exit (5-7 days)</div>
+        Happy to leave the door open, Marcus. If corporate events ever become a priority, or you know someone at Synpulse facing that question, I'm easy to find. Thanks for the connection.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROSPECT 2: VALERIE BLASCO — WARM -->
+  <div class="pcard warm">
+    <div class="ph">
+      <div class="av2">VB</div>
+      <div>
+        <div class="nm">Valerie Blasco</div>
+        <div class="rl">HR VP / Strategic Partner · Geneva</div>
+      </div>
+      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
+    </div>
+    <div class="scores">
+      <span class="score-chip">Geneva · multinational</span>
+      <span class="score-chip">C-suite adjacent</span>
+      <span class="score-chip">Expressive / Driver</span>
+      <span class="score-chip">20+ years experience</span>
+    </div>
+    <div class="signal">
+      <b>Signal:</b> Senior HR leader with multinational scope across five continents. HR leaders at this level oversee leadership retreats, team events and executive offsite experiences. Geneva network is strong for VisionMoments.
+    </div>
+    <div class="signal" style="background:rgba(201,162,39,.10);">
+      <b>Human hook:</b> "Building HR across five continents means coordinating internal events in very different cultural contexts. That's a specific challenge most event companies don't understand."
+    </div>
+    <div class="seq">
+      <div class="seq-label">5-message sequence · Peer Opener (acknowledge the scope, earn the question)</div>
+      <div class="msg">
+        <div class="msg-num">01 · Connection request (194 chars)</div>
+        Hi Valerie, your career building HR across five continents is genuinely rare. I work with senior teams in Switzerland on events that bring people together in ways they remember. Happy to connect.
+      </div>
+      <div class="msg">
+        <div class="msg-num">02 · Icebreaker</div>
+        Hi Valerie, thanks for connecting. Twenty-plus years coordinating people across that many cultures, the internal events and gatherings you've had to design over that career must have taught you exactly what separates memorable from forgettable. What's your experience been?
+      </div>
+      <div class="msg">
+        <div class="msg-num">03 · Value-add</div>
+        A lot of HR leaders I speak with say the same thing: the event looked right on paper but didn't land the way they wanted. Usually it comes down to the brief. The detail that gets missed is what the room should feel like when people leave, not just what the agenda says. Curious if that resonates in your world.
+      </div>
+      <div class="msg">
+        <div class="msg-num">04 · Pivot</div>
+        Valerie, different angle: are you currently in a role where you oversee corporate events or team experiences, or is that more in your past?
+      </div>
+      <div class="msg">
+        <div class="msg-num">05 · Clean exit</div>
+        Good to have connected, Valerie. If you or anyone in your Geneva network ever needs a trusted hand for a high-stakes corporate event in Switzerland, you know where to find me.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROSPECT 3: DESIREE GALICHER — WARM -->
+  <div class="pcard warm">
+    <div class="ph">
+      <div class="av2">DG</div>
+      <div>
+        <div class="nm">Désirée Galicher</div>
+        <div class="rl">Fractional COO / CHRO · Lausanne · Open to 2026 opportunities</div>
+      </div>
+      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
+    </div>
+    <div class="scores">
+      <span class="score-chip">Lausanne</span>
+      <span class="score-chip">Works with founders</span>
+      <span class="score-chip">Actively networking</span>
+      <span class="score-chip">Analytical / Driver</span>
+    </div>
+    <div class="signal">
+      <b>Signal:</b> Fractional COO working directly with founders and executive teams. Actively looking for 2026 work - she is actively networking on LinkedIn right now. Her clients are exactly Rosanna's ICP. She is a potential referral source as well as a direct prospect.
+    </div>
+    <div class="signal" style="background:rgba(201,162,39,.10);">
+      <b>Human hook:</b> "Bringing calm to complexity for executive teams is exactly how I'd describe what a good event organiser does. You free the leader to be present, not operational."
+    </div>
+    <div class="seq">
+      <div class="seq-label">5-message sequence · Pattern Interrupt (connect her language to yours)</div>
+      <div class="msg">
+        <div class="msg-num">01 · Connection request (148 chars)</div>
+        Hi Désirée, the way you describe bringing calm to complexity for executive teams is exactly how I think about event organisation. I'd love to connect.
+      </div>
+      <div class="msg">
+        <div class="msg-num">02 · Icebreaker</div>
+        Hi Désirée, thanks for connecting. Working closely with founders and executive teams on strategy and operations, do corporate events or team experiences ever come up as part of what they need to think through?
+      </div>
+      <div class="msg">
+        <div class="msg-num">03 · Value-add</div>
+        Something I see often with executives: the event gets delegated late, the brief is vague, and the result feels generic. The ones that work start with a clear picture of what the room should feel like when people leave. Is that a conversation you find yourself having with the leaders you support?
+      </div>
+      <div class="msg">
+        <div class="msg-num">04 · Pivot</div>
+        Slight change of direction, Désirée. We sometimes work with fractional executives who refer us to the founders and leadership teams they support. Is that something that could make sense in your world?
+      </div>
+      <div class="msg">
+        <div class="msg-num">05 · Clean exit</div>
+        I'll leave this here, Désirée. If it becomes relevant for your own work or a client, you know where I am. Good luck with the 2026 calendar.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROSPECT 4: OWEN McCALL — WARM -->
+  <div class="pcard warm">
+    <div class="ph">
+      <div class="av2">OM</div>
+      <div>
+        <div class="nm">Owen McCall</div>
+        <div class="rl">Marketing and Comms Leader · Fintech / Web3 · Zurich</div>
+      </div>
+      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
+    </div>
+    <div class="scores">
+      <span class="score-chip">Fintech · Zurich</span>
+      <span class="score-chip">Premium profile</span>
+      <span class="score-chip">Expressive</span>
+      <span class="score-chip">Story-driven communicator</span>
+    </div>
+    <div class="signal">
+      <b>Signal:</b> Leads marketing for fintech and Web3 companies in Zurich. Premium LinkedIn profile. His summary centres on storytelling and human connection - resonates with Rosanna's approach. Fintech events (client dinners, partner launches, investor events) are a real need in Zurich.
+    </div>
+    <div class="signal" style="background:rgba(201,162,39,.10);">
+      <b>Human hook:</b> "Your point about people connecting with ideas through stories - that's the brief I give every event. The content is the experience."
+    </div>
+    <div class="seq">
+      <div class="seq-label">5-message sequence · Peer Opener (speak his language - stories, human connection)</div>
+      <div class="msg">
+        <div class="msg-num">01 · Connection request (186 chars)</div>
+        Hi Owen, your point about people connecting with ideas through stories caught my attention. I help fintech brands in Zurich create in-person moments their clients don't forget. Worth connecting.
+      </div>
+      <div class="msg">
+        <div class="msg-num">02 · Icebreaker</div>
+        Hi Owen, thanks for connecting. Building marketing in fintech and Web3 across markets, live events and brand experiences must come up as part of the mix. What does that currently look like for you?
+      </div>
+      <div class="msg">
+        <div class="msg-num">03 · Value-add</div>
+        What I've noticed with fintech marketing in Zurich: the digital content is sharp but the in-person moments often feel generic compared to the brand. The teams that stand out are the ones where the event reflects the same precision and story clarity as the rest of their work. Curious if that gap is something you think about.
+      </div>
+      <div class="msg">
+        <div class="msg-num">04 · Pivot</div>
+        Different angle, Owen. We're working with a few Zurich-based fintech teams on client dinners and partner events this quarter. If that type of work ever lands on your desk, I'd love to show you what we do.
+      </div>
+      <div class="msg">
+        <div class="msg-num">05 · Clean exit</div>
+        Happy to leave the door open, Owen. If events ever become a bigger part of your strategy or you know someone facing that question, I'm easy to find. Thanks for the connection.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROSPECT 5: DAVID CAUSSE — WARM -->
+  <div class="pcard warm">
+    <div class="ph">
+      <div class="av2">DC</div>
+      <div>
+        <div class="nm">David Causse</div>
+        <div class="rl">HR Leader · Luxury / FMCG / Oil and Gas · Geneva</div>
+      </div>
+      <span class="tagi t-navy" style="margin-left:auto">WARM 6/10</span>
+    </div>
+    <div class="scores">
+      <span class="score-chip">Geneva</span>
+      <span class="score-chip">Luxury sector</span>
+      <span class="score-chip">Premium profile</span>
+      <span class="score-chip">Amiable / Expressive</span>
+    </div>
+    <div class="signal">
+      <b>Signal:</b> HR leader with experience in luxury and oil &amp; gas - two sectors with very high event standards. Geneva location. Premium profile indicates active networking. Luxury sector crossover is a strong fit for VisionMoments.
+    </div>
+    <div class="signal" style="background:rgba(201,162,39,.10);">
+      <b>Human hook:</b> "Luxury and oil and gas - two industries where the event experience is a direct statement about the brand. The standard is non-negotiable in both."
+    </div>
+    <div class="seq">
+      <div class="seq-label">5-message sequence · Peer Opener (connect on shared standards)</div>
+      <div class="msg">
+        <div class="msg-num">01 · Connection request (169 chars)</div>
+        Hi David, your background across luxury and oil and gas caught my eye - two industries where the event experience is a direct reflection of the brand. I'd love to connect.
+      </div>
+      <div class="msg">
+        <div class="msg-num">02 · Icebreaker</div>
+        Hi David, thanks for connecting. Luxury and oil and gas - two very different environments but both with extremely high expectations for how you bring people together. What's your experience been with corporate events in those sectors?
+      </div>
+      <div class="msg">
+        <div class="msg-num">03 · Value-add</div>
+        The pattern I see with luxury brands: they invest heavily in the product and the communication but the event experience gets delegated too late and loses the thread. The brief doesn't match the brand. Is that something you've run into?
+      </div>
+      <div class="msg">
+        <div class="msg-num">04 · Pivot</div>
+        David, slight change of direction. Are you currently in a role where corporate events are part of your scope, or more focused on other areas right now?
+      </div>
+      <div class="msg">
+        <div class="msg-num">05 · Clean exit</div>
+        Good to have connected, David. If events ever cross your desk or you know someone in Geneva who'd value a trusted organiser, you know where to find me.
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAGGED PROSPECTS -->
+  <div class="sec">Flagged prospects · confirm before sequencing</div>
+  <div class="flag-section">
+    <div style="font-size:13px;color:var(--gray-text);margin-bottom:12px;">These 5 prospects scored below 6/10 against your ICP. Review before deciding to pursue. Each one is flagged for a specific reason.</div>
+    <div class="flag-row">
+      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">MF</div>
+      <div style="flex:1;">
+        <div class="fn">Marta Fiocco</div>
+        <div class="fr">Executive Assistant with events background · Lugano · 5/10</div>
+        <div class="fr" style="margin-top:2px;">Flagged: She is a service provider (EA/events), not a buyer. Referral potential is moderate - she may know executives who need events. Pursue only if referral angle is clear.</div>
+      </div>
+      <span class="tagi t-amb">review</span>
+    </div>
+    <div class="flag-row">
+      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">AL</div>
+      <div style="flex:1;">
+        <div class="fn">Anna Lenz</div>
+        <div class="fr">Head of HR · Nestlé · Vevey · 5/10</div>
+        <div class="fr" style="margin-top:2px;">Flagged: FMCG, not finance or real estate. Nestlé does organise large internal events. Worth keeping if you want to expand beyond finance sector. Low priority for now.</div>
+      </div>
+      <span class="tagi t-amb">review</span>
+    </div>
+    <div class="flag-row">
+      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">PA</div>
+      <div style="flex:1;">
+        <div class="fn">Pierpaolo Aureli</div>
+        <div class="fr">Global VP HR · Pharma / FMCG · Basel · 4/10</div>
+        <div class="fr" style="margin-top:2px;">Flagged: Pharmaceutical sector, not finance or real estate. Event needs exist but not aligned with your ICP. Deprioritise.</div>
+      </div>
+      <span class="tagi t-grey">skip</span>
+    </div>
+    <div class="flag-row">
+      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">MC</div>
+      <div style="flex:1;">
+        <div class="fn">Mike Ciabatti</div>
+        <div class="fr">Reputation and Narrative Strategy · Switzerland · 3/10</div>
+        <div class="fr" style="margin-top:2px;">Flagged: Not an ICP match. Reputation/OSINT specialist. No clear event need. Skip.</div>
+      </div>
+      <span class="tagi t-grey">skip</span>
+    </div>
+    <div class="flag-row">
+      <div class="av2" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">BV</div>
+      <div style="flex:1;">
+        <div class="fn">Bernard Van der Stichele</div>
+        <div class="fr">Senior Director Global Marketing · Biotech · Switzerland · 4/10</div>
+        <div class="fr" style="margin-top:2px;">Flagged: Pharma and biotech, not finance or real estate. Large-company marketing director could need events but outside your defined ICP. Deprioritise.</div>
+      </div>
+      <span class="tagi t-grey">skip</span>
+    </div>
+  </div>
+
+  <!-- CLOSING NOTE -->
+  <div class="note">
+    Open with your highest-signal prospect first: <b>Marcus Lier at Synpulse, Zurich.</b> He leads marketing for a financial services firm across EMEA and Americas - client events are a real and recurring need in his role. His profile is precise and results-focused, so match that in your opener. Every DM above is a draft. You read it first. You send it.
+  </div>
+
+  <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  window.addEventListener('load',function(){
+    if(!window.gsap)return; gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.ohead',{y:26,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
+    gsap.from('.ohead h1',{y:14,opacity:0,duration:.7,delay:.12,ease:'power3.out'});
+    gsap.from('.stat,.pcard,.flag-section,.note',{y:20,opacity:0,duration:.55,stagger:.07,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
+    gsap.utils.toArray('.count').forEach(function(el){
+      var to=+el.dataset.to,o={v:0};
+      gsap.to(o,{v:to,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'},onUpdate:function(){el.textContent=Math.round(o.v).toLocaleString();}});
+    });
+  });
+</script>
+</body>
+</html>
